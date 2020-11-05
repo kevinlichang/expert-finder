@@ -1,0 +1,96 @@
+/* Included a couple extra options like jumbotrons or carousels */
+body {
+    margin-top: 100px;
+    background: #fcf1f1;
+    font-family: 'Raleway';
+    color: #1a1c20;
+}
+
+#mainNavbar .navbar-brand {        
+    font-size: 2rem;
+    color: #1a1c20;    
+}
+
+#mainNavbar .navbar-brand:hover {        
+    font-size: 2rem;
+    color: #b8a89d;    
+}
+
+#mainNavbar {
+    background: #f9813a;
+    font-size: 1.25rem;
+    font-weight: 80;
+}
+
+#mainNavbar .nav-link {
+    color : #fcf1f1;    
+}
+
+#mainNavbar .nav-link:hover {
+    color : #ffd5cd;    
+}
+
+#mainNavbar .navbar-toggler {
+    background-color : #1a1c20a9;       
+}
+
+#homeJumbo {    
+    color: #1a1c20;
+    font-weight: 1200;
+    background-image: url('');
+    background-size: cover;
+    height: 100vh;
+  }
+
+#contactJumbo {
+    color: #ffd5cdbb;
+    font-weight: 1200;
+    background-image: url('');
+    background-size: cover;
+    height: 66vh;
+}
+
+.btn {
+    background-color: #f9813a;
+    border-color: #f9813a;
+}
+
+.btn:hover {
+    background-color: #ffd5cd;
+    border-color: #ffd5cd;
+}
+
+.carousel-item {    
+    width: 100%;   
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    transition-duration: 2s;
+}
+
+/* Background color of navbar after user scrolls */
+#mainNavbar.navbar.userScrolled {
+    background: #f9813ac0;     
+}
+
+.card-body {
+    background-color: #fcf1f1;
+}
+
+#credit {
+    font-size: .9rem;
+}
+
+#headingGroup h1{
+    color: #1a1c20;    
+}
+
+.row {
+    background-color: #ffd5cd;
+}
+
+#scrollBox {
+    overflow: auto;
+    max-height: 400px;   
+}
