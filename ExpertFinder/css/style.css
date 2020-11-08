@@ -90,6 +90,12 @@ body {
     background-color: #ffd5cd;
 }
 
+.tableRows{
+
+    background-color: transparent;
+}
+
+
 #scrollBox {
     overflow: auto;
     max-height: 400px;   
