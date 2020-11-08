@@ -45,19 +45,53 @@
           <a href="account.html" class="nav-link">ACCOUNT</a>
         </li>
       </ul>
-
+  
+    </div>
     </div>
   </nav>
 
 
+
   <!-- Optional Jumbotron with Image and Quote (add image URL in CSS)-->
+
   <div class="jumbotron jumbotron-fluid" id="homeJumbo">
     <div class="container">
-      <h1 class="display-4">Search a skill or class</h1>
-      <p class="lead">Example descriptive text or explanation here?</p>
-      <a class="btn btn-primary btn-lg" href="index.html" role="button">Search</a>
+      <h1 class="display-4">Find the experts</h1>
+      <p class="lead">Please fill out the following form</p>
+
+      <div class="input-group">
+        <form>
+        <div class="form-group">
+          <label for="searchInputClasses">Past Classes</label>
+          <input type="text" class="form-control" id="searchInputClasses" placeholder="i.e. cs340 cs344">
+          <small id="searchClassesHelp" class="form-text text-muted">Leave it empty if you don't want to search for classes.</small>
+        </div>
+        <div class="form-group">
+          <label for="searchInputSkills">Mastered Skills</label>
+          <input type="text" class="form-control" id="searchInputSkills" placeholder="i.e. python mysql">
+          <small id="searchSkillsHelp" class="form-text text-muted">Leave it empty if you don't want to search for skills.</small>
+        </div>
+        <div class="form-group">
+          <label for="searchInputIndOrg">Industries/Organizations</label>
+          <input type="text" class="form-control" id="searchInputIndOrg" placeholder="i.e. MicroSoft NASA">
+          <small id="searchIndOrgHelp" class="form-text text-muted">Leave it empty if you don't want to search for industries or organizations.</small>
+        </div>
+        <a class="btn btn-primary btn-lg" href="result-list.html" role="button">Search</a>
+      </form>
+      </div>
+
+      <h3 class="text-muted text-center">Or do you want to <a href="add-new-expert.html">add a new expert</a> to the database?</h3><br>
+
     </div>
   </div>
+
+
+
+
+
+
+
+
   <p id="credit">Photo by Photographer</p>
 
   <div class="text-center">

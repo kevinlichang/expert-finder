@@ -18,6 +18,75 @@
 
   <title>Expert Finder</title>
 
+  <style>
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+form {
+  border: 3px solid grey;
+  width: 50%;
+}
+
+input[type=text]{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: rgb(26, 28, 32);;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+
+.container {
+  padding: 16px;
+}
+
+div.form
+{
+    display: block;
+    text-align: center;
+}
+form
+{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+h2 {
+  padding-top: 100px;
+}
+
+
+</style>
+
 
 </head>
 
@@ -49,8 +118,26 @@
 <p></p>
 <div class="container=fluid">
     <div class="text-center">    
-    <h2>Login Page</h2>
-    <p>Login Stuff here</p>
+    <h2>Login</h2>
+
+<div class="form">
+
+  <form action="/" method="post">
+
+  <div class="container">
+    <label for="uname"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="uname" required>
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" required>
+        
+    <button type="submit">Login</button>
+  
+  </div>
+
+</form>
+  
+</div>
     <br>    
   </div>
 

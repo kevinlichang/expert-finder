@@ -100,3 +100,27 @@ body {
     overflow: auto;
     max-height: 400px;   
 }
+
+
+.resultContainer {
+  display: table;
+  width: 100%;
+}
+
+.leftHalf {
+  background-color: #ff9e2c;
+  position: absolute;
+  left: 0px;
+  width: 10%;
+}
+
+.rightHalf {
+  background-color: #ffd5cd;
+  position: absolute;
+  right: 0px;
+  width: 90%;
+}
+
+.tab4 { 
+    tab-size: 8; 
+} 
