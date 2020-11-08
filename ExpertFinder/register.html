@@ -19,73 +19,31 @@
   <title>Expert Finder</title>
 
   <style>
+      /* Full-width input fields */
+    input[type=text], input[type=password] {
+        width: 80%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        display: inline-block;
+        border: none;
+        text-align: left;
+    }
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
+    .registerbtn {
+        background-color: rgb(26, 28, 32);
+        color: white;
+        padding: 16px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        opacity: 0.9;
+    }
 
-}
-
-form {
-  border: 3px solid grey;
-  width: 50%;
-}
-
-input[type=text]{
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
-
-input[type=password] {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
-
-button {
-  background-color: rgb(26, 28, 32);
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-}
-
-button:hover {
-  opacity: 0.8;
-}
-
-
-.container {
-  padding: 16px;
-}
-
-div.form
-{
-    display: block;
-    text-align: center;
-}
-form
-{
-    display: inline-block;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: left;
-}
-
-h2 {
-  padding-top: 100px;
-}
-
-
-</style>
+    .registerbtn:hover {
+    opacity: 1;
+    }
+  </style>
 
 
 </head>
@@ -118,29 +76,44 @@ h2 {
 <p></p>
 <div class="container=fluid">
     <div class="text-center">    
-    <h2>Login</h2>
-
-<div class="form">
-
-  <form action="/" method="post">
-
-    <div class="container">
-      <label for="uname"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" required>
-
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
+    	<form action="index.html">
+            <div class="container">
+              <h1>Sign up</h1>
+              <p>Fill in this form to create an account.</p>
+              <hr>
+                <div>
+                    <label for="email"><b>Email</b></label>
+                    <input type="text" placeholder="Enter Email" name="email" id="email" required>    
+                </div>
+              
+                <div> 
+                    <label for="psw"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+                </div>
+              
+                
+              <label for="name"><b>Name</b></label>
+              <input type="text" placeholder="Enter Name" name="name" id="name" required>
+                 <br>
+              <label for="skills"><b>Skills</b></label>
+              <input type="text" placeholder="Enter Skills" name="skills" id="skills" required>
+                <br>
+              <label for="course"><b>Coursework</b></label>
+              <input type="text" placeholder="Enter Coursework" name="course" id="course" required>
+                <br>
+              <label for="org"><b>Organization</b></label>
+              <input type="text" placeholder="Enter Organization" name="org" id="org" required>
           
-      <button type="submit">Login</button>
-    
-    </div>
-
-  </form>
-  
-</div>
-  <div class="container">
-    <span class="register"><a href="register.html">Need an account?</a></span>
-  </div>
+              
+              <hr>
+          
+              <button type="submit" class="registerbtn">Register</button>
+            </div>
+            
+            <div class="container signin">
+              <p>Already have an account? <a href="login.html">Sign in</a>.</p>
+            </div>
+          </form>
     <br>    
   </div>
 
