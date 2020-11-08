@@ -18,6 +18,8 @@ var actions =
 '<a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>';
 
 
+
+/// Submit Button Logic
 var submitBtn = document.getElementById("submitID");
 
 
@@ -26,6 +28,47 @@ function submitProfile(event){
 }
 
 submitBtn.addEventListener("click",submitProfile);
+
+
+
+
+
+/// Load table
+
+
+function LoadProfile(){
+    let testProfile ={
+        "Fname": "John",
+        "Lname": "Clarke",
+        "Email": "clarjohn@oregonstate.edu",
+        "Phone": "",
+        "AccountActive": "false",
+        "LinkedIn": "https://www.linkedin.com/in/jclarkew/",
+        "Github": "https://github.com/clarjohn",
+        "UserViz": "false",
+        "Classes": [{"Name": "CS 161", "Show":"true", "UserAdded":"true"},
+                     {"Name": "CS 162", "Show":"false", "UserAdded":"true"},
+                     {"Name": "CS 290", "Show":"true", "UserAdded":"false"}],
+         "Skills": [{"Name": "Python", "Show":"true", "UserAdded":"true"},
+                     {"Name": "SQL", "Show":"true", "UserAdded":"true"}],
+         "Org":[{"Name": "Climate Corp", "Show":"true", "UserAdded":"true"}] 
+     }
+
+     MentorProfile = testProfile
+};
+
+function displayProfile(){
+    $('#firstName').value = "John";
+
+};
+
+window.onload = function(event){
+    console.log("loading profile")
+    LoadProfile();
+    $('#firstName').value = "John";
+    event.preventDefault();
+};
+
 
 //// dynamic Table Classes
 $(document).ready(function(){
