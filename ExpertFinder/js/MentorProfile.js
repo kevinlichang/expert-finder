@@ -31,11 +31,7 @@ submitBtn.addEventListener("click",submitProfile);
 
 
 
-
-
 /// Load table
-
-
 function LoadProfile(){
     let testProfile ={
         "Fname": "John",

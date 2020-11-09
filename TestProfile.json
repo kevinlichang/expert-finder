@@ -1,0 +1,16 @@
+let testProfile ={
+   "Fname": "John",
+   "Lname": "Clarke",
+   "Email": "clarjohn@oregonstate.edu",
+   "Phone": "9991234567",
+   "AccountActive": "false",
+   "LinkedIn": "https://www.linkedin.com/in/jclarkew/",
+   "Github": "https://github.com/clarjohn",
+   "UserViz": "false",
+   "Classes": [{"Name": "CS 161", "Show":"true", "UserAdded":"true"},
+                {"Name": "CS 162", "Show":"false", "UserAdded":"true"},
+                {"Name": "CS 290", "Show":"true", "UserAdded":"false"}],
+    "Skills": [{"Name": "Python", "Show":"true", "UserAdded":"true"},
+                {"Name": "SQL", "Show":"true", "UserAdded":"true"}],
+    "Org":[{"Name": "Climate Corp", "Show":"true", "UserAdded":"true"}] 
+}
