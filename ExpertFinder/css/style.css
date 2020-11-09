@@ -4,7 +4,9 @@
     -Make Form boxes not take up whole column width
 */
 
-/* Updated .row to a .coloredRow, so that it will not be colored unless you use the colored row variant */
+/* Updated .row to a .coloredRow, so that it will not be colored unless you use the colored row variant
+   To use just add "coloredRow" in the class like: <div class="row coloredRow justify-content-center">
+*/
 
 /* Included a couple extra options like jumbotrons or carousels */
 body {
@@ -94,8 +96,9 @@ body {
     color: #1a1c20;    
 }
 
-.coloredRow {
+.coloredRow{    
     background-color: #ffd5cd;
+       
 }
 
 .tableRows{
