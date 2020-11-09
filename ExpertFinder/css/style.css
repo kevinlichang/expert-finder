@@ -4,6 +4,8 @@
     -Make Form boxes not take up whole column width
 */
 
+/* Updated .row to a .coloredRow, so that it will not be colored unless you use the colored row variant */
+
 /* Included a couple extra options like jumbotrons or carousels */
 body {
     margin-top: 100px;
@@ -92,7 +94,7 @@ body {
     color: #1a1c20;    
 }
 
-.row {
+.coloredRow {
     background-color: #ffd5cd;
 }
 
