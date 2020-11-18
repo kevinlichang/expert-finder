@@ -1,11 +1,10 @@
 /* To Do:
-    -Update Mentor Login to change to logout or something while someone is logged in
-    -Change Pink from Rows
-    -Make Form boxes not take up whole column width
+    -Update Mentor Login to change to logout or something while someone is logged in  
+    -Consistency  
 */
 
-/* Updated .row to a .coloredRow, so that it will not be colored unless you use the colored row variant
-   To use just add "coloredRow" in the class like: <div class="row coloredRow justify-content-center">
+/* Updated .row to a .colored, so that it will not be colored unless you use the colored class variant
+   To use just add "colored" in the class like: <div class="row colored justify-content-center">
 */
 
 /* Included a couple extra options like jumbotrons or carousels */
@@ -46,28 +45,31 @@ body {
 
 #homeJumbo {    
     color: #1a1c20;
+    background-color: #ffd1b7;
     font-weight: 1200;
     background-image: url('');
     background-size: cover;
     height: 100vh;
   }
 
-#contactJumbo {
+/* #contactJumbo {
     color: #ffd5cdbb;
     font-weight: 1200;
     background-image: url('');
     background-size: cover;
     height: 66vh;
-}
+} */
 
 .btn {
     background-color: #f9813a;
     border-color: #f9813a;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .btn:hover {
-    background-color: #ffd5cd;
-    border-color: #ffd5cd;
+    background-color: #ffa876;
+    border-color: #ffa876;
 }
 
 .carousel-item {    
@@ -96,8 +98,8 @@ body {
     color: #1a1c20;    
 }
 
-.coloredRow{    
-    background-color: #ffd5cd;
+.colored{    
+    background-color: #ffd1b7;
        
 }
 
@@ -119,14 +121,14 @@ body {
 }
 
 .leftHalf {
-  background-color: #ff9e2c;
+  background-color: #ff9e66;
   position: absolute;
+  font-weight: 30;
   left: 0px;
   width: 10%;
 }
 
 .rightHalf {
-  background-color: #ffd5cd;
   position: absolute;
   right: 0px;
   width: 90%;
@@ -134,4 +136,12 @@ body {
 
 .tab4 { 
     tab-size: 8; 
-} 
+}
+
+.content{
+    margin-top: 100px;;
+}
+
+
+
+  

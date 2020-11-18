@@ -18,7 +18,7 @@
 
     <title>Expert Finder</title>
 
-    <style>
+    <!-- <style>
         /* Full-width input fields */
         input[type=text],
         input[type=password] {
@@ -52,7 +52,7 @@
         }
 
         ​
-    </style>
+    </style> -->
 
 
 </head>
@@ -61,75 +61,88 @@
     <nav id="mainNavbar" class="navbar navbar-expand-md fixed-top navbar-dark">
         <a href="index.html" class="navbar-brand">Expert Finder</a>
         <button class="navbar-toggler" data-toggle="collapse" data-target="#navLinks" aria-label="Toggle Navbar">
-            <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navLinks">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a href="index.html" class="nav-link">HOME</a>
-                </li>
-                <li class="nav-item">
-                    <a href="login.html" class="nav-link">MENTOR LOGIN</a>
-                </li>
-                <li class="nav-item">
-                    <a href="about.html" class="nav-link">ABOUT</a>
-                </li>
-                <li class="nav-item">
-                    <a href="account.html" class="nav-link">ACCOUNT</a>
-                </li>
-            </ul>
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a href="index.html" class="nav-link">SEARCH</a>
+            </li>        
+            <li class="nav-item">
+              <a href="add-new-expert.html" class="nav-link">RECOMMEND</a>
+            </li>
+            <li class="nav-item">
+              <a href="about.html" class="nav-link">ABOUT</a>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item">
+              <a href="mentor-profile.html" class="nav-link">PROFILE</a>
+            </li>
+            <li class="nav-item">
+              <a href="login.html" class="nav-link">LOGIN</a>
+            </li>
+          </ul>
+      
         </div>
-    </nav>
+        </div>
+      </nav>
 
 
     <p></p>
-    <div class="container=fluid">
+    <div class="container-fluid">
         <div class="text-center">
             <form action="index.html">
-                <div class="container">
+                <div class="container registerContainer form-group colored col-10 col-md-6 col-lg-6 col-xl-4">
                     <h1>Sign up</h1>
                     <p>Fill in this form to create an account.</p>
 
-                    <hr>
-                    <label for="email"><b>Email </b></label>
-                    <input type="text" placeholder="Enter Email" name="email" id="email" required>
+                    <div class="form-group">
+                        <label for="email"><b>Email </b></label>
+                        <input type="text" class="form-control" placeholder="Enter Email" name="email" id="email"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="psw"><b>Password </b></label>
+                        <input type="password" class="form-control" placeholder="Enter Password" name="psw" id="psw"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="name"><b>Name </b></label>
+                        <input type="text" class="form-control" placeholder="Enter Name" name="name" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="skills"><b>Skills </b></label>
+                        <input type="text" class="form-control" placeholder="Enter Skills" name="skills" id="skills"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="course"><b>Coursework </b></label>
+                        <input type="text" class="form-control" placeholder="Enter Coursework" name="course" id="course"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="org"><b>Organization </b></label>
+                        <input type="text" class="form-control" placeholder="Enter Organization" name="org" id="org"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="git"><b>GitHub </b></label>
+                        <input type="text" class="form-control" placeholder="Enter GitHub Link (Optional)" name="git"
+                            id="git">
+                    </div>
+                    <div class="form-group">
+                        <label for="linkedin"><b>LinkedIn </b></label>
+                        <input type="text" class="form-control" placeholder="Enter LinkedIn (Optional)" name="linkedin"
+                            id="course">
+                    </div>
+                    <div class="form-group">
+                        <label for="twitter"><b>Twitter </b></label>
+                        <input type="text" class="form-control" placeholder="Enter Twitter (Optional)" name="twitter"
+                            id="twitter">
+                    </div>
 
-                    <br>
-
-                    <label for="psw"><b>Password </b></label>
-                    <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
-
-                    <br>
-                    <label for="name"><b>Name </b></label>
-                    <input type="text" placeholder="Enter Name" name="name" id="name" required>
-
-                    <br>
-                    <label for="skills"><b>Skills </b></label>
-                    <input type="text" placeholder="Enter Skills" name="skills" id="skills" required>
-
-                    <br>
-                    <label for="course"><b>Coursework </b></label>
-                    <input type="text" placeholder="Enter Coursework" name="course" id="course" required>
-
-                    <br>
-                    <label for="org"><b>Organization </b></label>
-                    <input type="text" placeholder="Enter Organization" name="org" id="org" required>
-
-                    <br>
-                    <label for="git"><b>GitHub </b></label>
-                    <input type="text" placeholder="Enter GitHub Link (Optional)" name="git" id="git">
-
-                    <br>
-                    <label for="linkedin"><b>LinkedIn </b></label>
-                    <input type="text" placeholder="Enter LinkedIn (Optional)" name="linkedin" id="course">
-                    
-                    <br>
-                    <label for="twitter"><b>Twitter </b></label>
-                    <input type="text" placeholder="Enter Twitter (Optional)" name="twitter" id="twitter">
-
-                    <hr>
-
-                    <button type="submit" class="registerbtn">Register</button>
+                    <button type="submit" class="btn btn-primary btn-lg">Register</button>
                 </div>
 
                 <div class="container signin">
