@@ -17,6 +17,9 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/ResultList.css">
 
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+
+
   <title>Expert Finder</title>
 
 
@@ -117,6 +120,22 @@
           <tr>
             <th>Github Project(s)</th>
             <td><a id="selectedProject"></a></td>
+            <td> 
+              <!-- Trigger/Open The Modal -->
+              <button id="myBtn"></button>
+
+              <!-- The Modal -->
+              <div id="myModal" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                  <span class="close">&times;</span>
+                  <h3>Repos</h3>
+                  <div class="repos"></div>
+                </div>
+
+              </div>
+            </td>
           </tr>
           <!--<tr><td><td>...</td><td><a class="text-primary">more</a></td></tr>-->
         </tbody>
