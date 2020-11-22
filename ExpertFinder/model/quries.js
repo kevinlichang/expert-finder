@@ -76,3 +76,25 @@ queriesRouter.put('/account/activate', (req,res,next)=>{
     }
   
   });
+
+
+  //account delete 
+  
+queriesRouter.delete('/account', (req,res,next)=>{
+    let accountid = req.query.accountid;
+  
+    sql = 'DELETE FROM account_info '
+    sql += 'where id = ?'
+  
+    console.log(accountid);
+  
+    db.run(sql,accountid, (err) =>{
+  
+      if (err) {
+        return console.error(err.message);
+      }
+      res.status(500).send(`Row(s) deleted ${this.changes}`);
+  
+    });
+  
+  });
