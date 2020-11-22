@@ -98,3 +98,21 @@ queriesRouter.delete('/account', (req,res,next)=>{
     });
   
   });
+
+
+// user get
+  queriesRouter.get('/user', (req,res,next)=>{
+    let accountid = req.query.accountid;
+  
+    let sql = 'select userid as accountid, fname, lname, phone, email, linkedin, github, twitter from user_info '
+    sql += 'where userid = ?'
+  
+    db.get(sql,accountid,(err,rows)=>{
+      if(err){
+        res.status(500).json({"error": err.message});
+      }else{
+          res.status(200).json(rows);
+      }
+    });
+  
+  });
