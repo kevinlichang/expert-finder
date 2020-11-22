@@ -53,3 +53,26 @@ queriesRouter.post('/account', (req,res,next)=>{
       res.status(500).send("account creation failed")
     }
   });
+
+  //account put 
+  
+queriesRouter.put('/account/activate', (req,res,next)=>{
+    let accountid = req.body.accountid;
+  
+  
+    var sql = 'Update account_info set accountactive = true '
+    sql += 'where id = ?'
+  
+    if((accountid != null)){
+      db.run(sql,[accountid], (err)=>{
+        if(err){
+          res.status(500).json({"error": err.message});
+        }else{
+          res.status(201).send("Account updated");
+        }
+      });
+    }else{
+      res.status(500).send("account update failed")
+    }
+  
+  });
