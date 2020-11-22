@@ -116,3 +116,41 @@ queriesRouter.delete('/account', (req,res,next)=>{
     });
   
   });
+
+
+  //user post 
+  queriesRouter.post('/user',(req,res,next)=>{
+    let accountid = req.query.accountid;
+    let fname = req.body.fname;
+    let lname = req.body.lname;
+    let phone = req.body.phone;
+    let email = req.body.email;
+    let linkedin = req.body.linkedin;
+    let github = req.body.github;
+    let twitter = req.body.twitter;
+  
+    var sql1 = 'delete from user_info '
+    sql1 += 'where userid = ?'
+  
+    var sql2 = 'INSERT INTO user_info(userid,fname,lname, phone, email, linkedin, github, twitter) VALUES (?,?,?,?,?,?,?,?)'
+    let values = [accountid,fname,lname,phone,email,linkedin,github,twitter];
+  
+    db.run(sql1,accountid, (err)=>{
+      if(err){
+        res.status(500).json({"error": err.message});
+      }else{
+        db.run(sql2,values, (err)=>{
+          if(err){
+            res.status(500).json({"error": err.message});
+          }else{
+            res.status(204).send("record updated")
+          }
+        });
+      }
+    })
+  
+  
+  });
+
+
+  //tags
