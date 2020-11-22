@@ -15,6 +15,7 @@
 
   <!-- My CSS -->
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/ResultList.css">
 
   <title>Expert Finder</title>
 
@@ -55,7 +56,7 @@
   <p></p>
   <div class="container=fluid">
       <div class="text-center">    
-      <h2>Search result for "cs160"</h2>
+      <h2>Search result for <q id="searchInputString"></q></h2>
       <br>    
   </div>
 
@@ -64,25 +65,10 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th scope="col">List of Experts</th>
+            <th scope="col">List of Experts:</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <th scope="row">John Smith</th>
-          </tr>
-          <tr>
-            <th scope="row">Carol Thomas</th>
-          </tr>
-          <tr>
-            <th scope="row">Jennifer Garcia</th>
-          </tr>
-          <tr>
-            <th scope="row">Steve Thomas</th>
-          </tr>
-          <tr>
-            <th scope="row">Steve Johnson</th>
-          </tr>
+        <tbody id="tableBody">
         </tbody>
       </table>
     </div>
@@ -91,51 +77,48 @@
   <div section="resultContainer">
     <div class="rightHalf colored">
 
-
     <div class="container">
       <table class="table">
         <tbody>
           <tr>
-            <h2>John Smith</h2>
+            <h2 id="selectedName"></h2>
+          </tr>
+          <tr>
+            <th>Email</th>
+            <td id="selectedEmail"></td>
           </tr>
           <tr>
             <th>Classes</th>
-            <td>cs160, cs161, cs162, cs225, cs271, cs355, cs366, cs377, cs388, cs399 ...<a class="text-primary">more</a></td>
-            <td><a class="btn btn-primary btn-sm" href="confirm-profile.html" role="button">Update</a></td>
+            <td id="selectedClasses"></td>
+            <td><a class="btn btn-primary btn-sm" href="mentor-profile.html" role="button">Update</a></td>
           </tr>
           <tr>
             <th>Skills</th>
-            <td>Python, HTML, Javascript, Node </td>
-            <td><a class="btn btn-primary btn-sm" href="confirm-profile.html" role="button">Update</a></td>
+            <td id="selectedSkills"></td>
+            <td><a class="btn btn-primary btn-sm" href="mentor-profile.html" role="button">Update</a></td>
           </tr>
           <tr>
-            <th>Industry/Org</th>
-            <td>Craigslist, Amazon </td>
-            <td><a class="btn btn-primary btn-sm" href="confirm-profile.html" role="button">Update</a></td>
+            <th>Industries/Organiztions</th>
+            <td id="selectedOrg"></td>
+            <td><a class="btn btn-primary btn-sm" href="mentor-profile.html" role="button">Update</a></td>
           </tr>
           <tr>
             <th>LinkedIn</th>
-            <td><a href="linkedin.com/jsmith">linkedin.com/jsmith</a></td>
+            <td><a id="selectedLinkedin"></a></td>
           </tr>
           <tr>
             <th>Twitter</th>
-            <td><a href="twitter.com/jsmith">linkedin.com/jsmith</a></td>
+            <td><a id="selectedTwitter"></a></td>
           </tr>
           <tr>
             <th>Github</th>
-            <td><a href="github.com/jsmith">linkedin.com/jsmith</a></td>
+            <td><a id="selectedGit"></a></td>
           </tr>
           <tr>
-            <th>Ongoing Github Project(s)</th>
-            <td>Project 5: <a href="github.com/jsmith/project5">linkedin.com/jsmith/project5</a></td>
-            <td><p>description</p></td>
+            <th>Github Project(s)</th>
+            <td><a id="selectedProject"></a></td>
           </tr>
-          <tr>
-            <th>Past Github Project(s)</th>
-            <td>Project 4: <a href="github.com/jsmith/project4">linkedin.com/jsmith/project4</a></td>
-            <td><p>description</p></td>
-          </tr>
-          <tr><td><td>...</td><td><a class="text-primary">more</a></td></tr>
+          <!--<tr><td><td>...</td><td><a class="text-primary">more</a></td></tr>-->
         </tbody>
        </table>
     </div>
@@ -158,3 +141,5 @@
 </body>
 
 </html>
+
+<script src="js/SearchFunctionality.js"></script>
