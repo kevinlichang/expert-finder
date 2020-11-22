@@ -154,3 +154,7 @@ queriesRouter.delete('/account', (req,res,next)=>{
 
 
   //tags
+
+
+  //export
+module.exports = queriesRouter;
