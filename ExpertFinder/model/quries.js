@@ -28,3 +28,28 @@ queriesRouter.get('/account', (req,res,next)=>{
       }
     });
   });
+
+
+//account post  
+queriesRouter.post('/account', (req,res,next)=>{
+    let username = req.body.username;
+    let userpassword = req.body.userpassword;
+    let accountactive = false;
+  
+  
+  
+    var sql = "INSERT INTO account_info(username, userpassword, accountactive) "
+    sql += "VALUES(?,?,?) "
+  
+    if((userpassword != null) && (username != null)){
+      db.run(sql,[username,userpassword,accountactive], (err)=>{
+        if(err){
+          res.status(500).json({"error": err.message});
+        }else{
+          res.status(201).send("Account Created");
+        }
+      });
+    }else{
+      res.status(500).send("account creation failed")
+    }
+  });
