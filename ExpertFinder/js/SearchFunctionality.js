@@ -106,7 +106,6 @@ var request = new XMLHttpRequest();
         true)
         request.onload = function() {
             var data = JSON.parse(this.response);
-            console.log(data);
             var statusHTML = '';
             $.each(data, function(i, status){
                 statusHTML += '<div class="card"> \
