@@ -2,7 +2,7 @@ var url = 'http://flip3.engr.oregonstate.edu:4001/';
 var confirmURL = "http://flip3.engr.oregonstate.edu:4001/confirm-profile.html"
 
 $(document).ready(function(){
-  var from,to,subject,text;
+  var to,subject,text;
   $("#register-submit").click(function(){    
     to=$("#email").val();
     subject = "Confirm Profile for " + $("#firstname").val();
