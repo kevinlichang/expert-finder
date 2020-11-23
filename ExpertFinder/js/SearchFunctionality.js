@@ -7,16 +7,20 @@ var inputType = JSON.parse(data).type;
 var apiKey = "";
 var expertList = {};
 
-function Expert(name, email, classes, skills, org, linkedin, twitter, github, project) {
-  this.name = name; 
-  this.email = email;
-  this.classes = classes;
-  this.skills = skills; 
-  this.org = org; 
-  this.linkedin = linkedin;
-  this.twitter = twitter;
-  this.github = github;
-  this.project = project;
+class Expert{
+	constructor(fname, lname, email, phone, classes, skills, org, linkedin, twitter, github, project){
+	this.fname = fname;
+	this.lname = lname; 
+	this.email = email;
+	this.phone = phone
+	this.classes = classes;
+	this.skills = skills; 
+	this.org = org; 
+	this.linkedin = linkedin;
+	this.twitter = twitter;
+	this.github = github;
+	this.project = project;
+	}
 }
 
 function sendData(){
@@ -33,9 +37,19 @@ function sendData(){
       if(req.status >= 200 && req.status < 400){
         var response = JSON.parse(req.responseText);
         for(let i = 0; i < response; i++){
-        	expertList.push(new Expert(response[i].name, response[i].email, response[i].classes,
-        		response[i].skills, response[i].org, response[i].linkedin, response[i].twitter,
-        		response[i].github, response[i].project));	
+        	let temp = new expert();
+        	temp.fname = response[i].fname;
+        	temp.lname = response[i].lname;
+        	temp.email = response[i].email;
+        	temp.phone = response[i].phone;
+        	temp.classes = response[i].classes;
+        	temp.skills = response[i].skills;
+        	temp.org = response[i].org;
+        	temp.linkedin = response[i].linkedin;
+        	temp.twitter = response[i].twitter;
+        	temp.github = response[i].github;
+        	temp.project = response[i].project;
+        	expertList.push(temp);	
         }
       }else{
         console.log("Error in network request: " + req.statusText);
@@ -44,17 +58,23 @@ function sendData(){
 
 
 var exampleExperts = [
-	new Expert("Emily Earnhardt", "EEarnhardt@gmail.com", "cs160 cs161 cs162 cs352 cs361 cs373 cs389 cs429 cs583 cs678", 
-		"Java Javascript Python C C++ C# HTML", "Amazon", "linkedin.com/EEarnhardt", "twitter.com/EEarnhardt",
+	new Expert("Emily", "Earnhardt", "EEarnhardt@gmail.com", "5413602345", ["cs160","cs161","cs162","cs352","cs361","cs373","cs389","cs429","cs583","cs678"], 
+		"[Java,Javascript,Python,C,C++,C#,HTML]", "[Amazon]", "linkedin.com/EEarnhardt", "twitter.com/EEarnhardt",
 		"github.com/EEarnhardt", "Project5 github.com/EEarnhardt/project5"),
-	new Expert("Mark Smith", "MSmith@gmail.com", "cs160 cs241 cs267 cs322 cs334 cs363 cs372 cs438 cs517 cs663", 
-		"Node Javascript Python C C++ HTML mySQL", "NASA Google", "linkedin.com/MSmith", "twitter.com/MSmith",
+	new Expert("Mark", "Smith", "MSmith@gmail.com", "5416472293", ["cs160","cs241","cs267","cs322","cs334","cs363","cs372","cs438","cs517","cs663"], 
+		"[Node,Javascript,Python,C,C++,HTML,mySQL]", "[NASA,Google]", "linkedin.com/MSmith", "twitter.com/MSmith",
 		"github.com/MSmith", "Project2 github.com/MSmith/project2")
 ];
+expertList = exampleExperts;
 
 
 
 function showProfile(result,index,event){
+	previousTD = document.getElementsByClassName("fixedTD");
+	let pl = previousTD.length;
+	for(let i = 0; i < pl; i++){
+		previousTD[i].parentElement.removeChild(previousTD[i]);
+	}
 	let color = document.getElementsByClassName("clickable-row");
 	for(let i = 0; i < color.length; i++){
 		color[i].className = "clickable-row";
@@ -62,9 +82,17 @@ function showProfile(result,index,event){
 			color[i].className="clickable-row colored";
 		}
 	}
-	document.getElementById("selectedName").innerHTML = result[index].name;
+	document.getElementById("selectedName").innerHTML = result[index].fname + " "+result[index].lname;
 	document.getElementById("selectedEmail").innerHTML = result[index].email;
-	document.getElementById("selectedClasses").innerHTML = result[index].classes;
+	document.getElementById("selectedPhone").innerHTML = result[index].phone;
+	let tempClass = document.getElementById("selectedClasses");
+	for(let j = 0; j < result[index].classes.length; j++){
+		var newTD = document.createElement("td");
+		newTD.className="fixedTD";
+		tempClass.appendChild(newTD);
+		newTD.innerHTML = result[index].classes[j];
+	}
+	
 	document.getElementById("selectedSkills").innerHTML = result[index].skills;
 	document.getElementById("selectedOrg").innerHTML = result[index].org;
 	document.getElementById("selectedLinkedin").innerHTML = result[index].linkedin;
@@ -85,59 +113,19 @@ function listNames(result){
 		document.getElementById('searchInputString').innerHTML = inputString;
 	}
 	var tbody = document.getElementById("tableBody");
-	for(let i = 0; i < exampleExperts.length; i++){
+	for(let i = 0; i < expertList.length; i++){
 		var newRow = document.createElement("tr");
 		newRow.className = "clickable-row";
-		newRow.setAttribute('onclick', 'showProfile(exampleExperts,'+ i +')')
+		newRow.setAttribute('onclick', 'showProfile(expertList,'+ i +')')
 		var newTH = document.createElement("th");
 		tbody.appendChild(newRow);
 		newRow.appendChild(newTH);
-		newTH.innerHTML = exampleExperts[i].name;
+		newTH.innerHTML = expertList[i].lname+" "+expertList[i].fname;
 	}
 }
 
-expertList = exampleExperts;
+
 //sendData();
 listNames(expertList);
 showProfile(expertList,0);
 
-var request = new XMLHttpRequest();
-        request.open('GET','https://api.github.com/users/kevinlichang/repos' , 
-        true)
-        request.onload = function() {
-            var data = JSON.parse(this.response);
-            var statusHTML = '';
-            $.each(data, function(i, status){
-                statusHTML += '<div class="card"> \
-                                    <a href= '+status.html_url+'> ' + status.name +  ' </a> \
-                                </div>';
-            });
-            $('.repos').html(statusHTML);
-        }
-        request.send();
-
-// Get the modal
-var modal = document.getElementById("myModal");
-
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on the button, open the modal
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}

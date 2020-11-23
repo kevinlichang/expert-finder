@@ -1,9 +1,9 @@
-
-
-
-
-
-
+var updateData = localStorage['updateRequest'];
+var oldData;
+if(updateData){
+localStorage.removeItem('updateRequest');
+oldData = JSON.parse(updateData);
+}
 
 
 
