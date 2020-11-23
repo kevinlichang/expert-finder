@@ -1,3 +1,4 @@
+//data inheritted from the index page
 var data = localStorage['searchRequest'];
 if(data){
 localStorage.removeItem('searchRequest');
@@ -7,6 +8,8 @@ var inputType = JSON.parse(data).type;
 var apiKey = "";
 var expertList = {};
 
+
+//class that store the data returned from the database
 class Expert{
 	constructor(fname, lname, email, phone, classes, skills, org, linkedin, twitter, github, project){
 	this.fname = fname;
@@ -23,6 +26,7 @@ class Expert{
 	}
 }
 
+//sent get request based on the search type 
 function sendData(){
 	var req = new XMLHttpRequest();
 	//if search by Name
@@ -57,44 +61,48 @@ function sendData(){
 }
 
 
+//implement temporary testing array is used before database implementation finishes. 
 var exampleExperts = [
 	new Expert("Emily", "Earnhardt", "EEarnhardt@gmail.com", "5413602345", ["cs160","cs161","cs162","cs352","cs361","cs373","cs389","cs429","cs583","cs678"], 
-		"[Java,Javascript,Python,C,C++,C#,HTML]", "[Amazon]", "linkedin.com/EEarnhardt", "twitter.com/EEarnhardt",
+		["Java","Javascript","Python","C","C++","C#","HTML"], ["Amazon"], "linkedin.com/EEarnhardt", "twitter.com/EEarnhardt",
 		"github.com/EEarnhardt", "Project5 github.com/EEarnhardt/project5"),
 	new Expert("Mark", "Smith", "MSmith@gmail.com", "5416472293", ["cs160","cs241","cs267","cs322","cs334","cs363","cs372","cs438","cs517","cs663"], 
-		"[Node,Javascript,Python,C,C++,HTML,mySQL]", "[NASA,Google]", "linkedin.com/MSmith", "twitter.com/MSmith",
+		["Node","Javascript","Python","C","C++","HTML","mySQL"], ["NASA","Google"], "linkedin.com/MSmith", "twitter.com/MSmith",
 		"github.com/MSmith", "Project2 github.com/MSmith/project2")
 ];
 expertList = exampleExperts;
 
-
-
-function showProfile(result,index,event){
-	previousTD = document.getElementsByClassName("fixedTD");
-	let pl = previousTD.length;
-	for(let i = 0; i < pl; i++){
-		previousTD[i].parentElement.removeChild(previousTD[i]);
+//formate the string made by classes, skills, or org 
+function formatStr(objStr){
+	var tempStr = "";
+	for(let j = 0; j < objStr.length; j++){
+		tempStr += objStr[j];
+		if(j != objStr.length - 1){
+			tempStr += ", ";
+		}
 	}
+	return tempStr;
+}
+
+//used to send current selected data to the menter-profile page
+var profileIndex = 0;
+
+//implementation of the page changed after clicking the expert's name 
+function showProfile(result,index,event){
 	let color = document.getElementsByClassName("clickable-row");
 	for(let i = 0; i < color.length; i++){
 		color[i].className = "clickable-row";
 		if(i == index){
 			color[i].className="clickable-row colored";
+			profileIndex = i;
 		}
 	}
-	document.getElementById("selectedName").innerHTML = result[index].fname + " "+result[index].lname;
+	document.getElementById("selectedName").innerHTML = result[index].lname+" "+result[index].fname;
 	document.getElementById("selectedEmail").innerHTML = result[index].email;
 	document.getElementById("selectedPhone").innerHTML = result[index].phone;
-	let tempClass = document.getElementById("selectedClasses");
-	for(let j = 0; j < result[index].classes.length; j++){
-		var newTD = document.createElement("td");
-		newTD.className="fixedTD";
-		tempClass.appendChild(newTD);
-		newTD.innerHTML = result[index].classes[j];
-	}
-	
-	document.getElementById("selectedSkills").innerHTML = result[index].skills;
-	document.getElementById("selectedOrg").innerHTML = result[index].org;
+	document.getElementById("selectedClasses").innerHTML = formatStr(result[index].classes);
+	document.getElementById("selectedSkills").innerHTML = formatStr(result[index].skills);
+	document.getElementById("selectedOrg").innerHTML = formatStr(result[index].org);
 	document.getElementById("selectedLinkedin").innerHTML = result[index].linkedin;
 	document.getElementById("selectedLinkedin").href = result[index].linkedin;
 	document.getElementById("selectedTwitter").innerHTML = result[index].twitter;
@@ -108,6 +116,7 @@ function showProfile(result,index,event){
 	}
 }
 
+//implementation of the clickable names listed in the left half of search result page
 function listNames(result){
 	if(inputString){
 		document.getElementById('searchInputString').innerHTML = inputString;
@@ -124,6 +133,11 @@ function listNames(result){
 	}
 }
 
+//to send data to mentor-profile page when user click update button in this page
+function storeUpdate(){
+	var update = expertList[profileIndex];
+	localStorage.setItem("updateData", JSON.stringify(update));
+}
 
 //sendData();
 listNames(expertList);
