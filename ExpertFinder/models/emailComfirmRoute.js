@@ -1,7 +1,7 @@
 var express = require("express");
 var nodemailer = require('nodemailer');
 
-queriesRouter = express.Router();
+emailRouter = express.Router();
 
 const transporter = nodemailer.createTransport({
   service: 'Gmail',
@@ -11,7 +11,7 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-queriesRouter.get('/send-email-confirm', function(req, res) {
+emailRouter.get('/send-email-confirm', function(req, res) {
   const mailOptions = {
   from: 'expert.finder.c2c@gmail.com',
   to : req.query.to,
@@ -31,3 +31,5 @@ queriesRouter.get('/send-email-confirm', function(req, res) {
   })
 
 });
+
+module.exports = emailRouter;
