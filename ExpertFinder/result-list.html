@@ -17,9 +17,6 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/ResultList.css">
 
-  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-
-
   <title>Expert Finder</title>
 
 
@@ -84,26 +81,29 @@
       <table class="table">
         <tbody>
           <tr>
-            <h2 id="selectedName"></h2>
+            <td><h2 id="selectedName"></h2></td>
+            <td><td><a class="btn btn-primary" href="mentor-profile.html" role="button">Update</a></td></td>
           </tr>
           <tr>
             <th>Email</th>
             <td id="selectedEmail"></td>
           </tr>
           <tr>
+          <tr>
+            <th>Phone</th>
+            <td id="selectedPhone"></td>
+          </tr>
+          <tr>
             <th>Classes</th>
             <td id="selectedClasses"></td>
-            <td><a class="btn btn-primary btn-sm" href="mentor-profile.html" role="button">Update</a></td>
           </tr>
           <tr>
             <th>Skills</th>
             <td id="selectedSkills"></td>
-            <td><a class="btn btn-primary btn-sm" href="mentor-profile.html" role="button">Update</a></td>
           </tr>
           <tr>
             <th>Industries/Organiztions</th>
             <td id="selectedOrg"></td>
-            <td><a class="btn btn-primary btn-sm" href="mentor-profile.html" role="button">Update</a></td>
           </tr>
           <tr>
             <th>LinkedIn</th>
@@ -120,22 +120,6 @@
           <tr>
             <th>Github Project(s)</th>
             <td><a id="selectedProject"></a></td>
-            <td> 
-              <!-- Trigger/Open The Modal -->
-              <button id="myBtn"></button>
-
-              <!-- The Modal -->
-              <div id="myModal" class="modal">
-
-                <!-- Modal content -->
-                <div class="modal-content">
-                  <span class="close">&times;</span>
-                  <h3>Repos</h3>
-                  <div class="repos"></div>
-                </div>
-
-              </div>
-            </td>
           </tr>
           <!--<tr><td><td>...</td><td><a class="text-primary">more</a></td></tr>-->
         </tbody>
