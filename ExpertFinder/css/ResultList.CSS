@@ -26,5 +26,8 @@
 }
 
 .fixedTable{ table-layout: fixed; }
-.fixedTD { width: 5%; }
+.fixedTH { width: 5%; }
+
+
+
 
