@@ -3,6 +3,10 @@ var nodemailer = require('nodemailer');
 
 emailRouter = express.Router();
 
+var bodyParser = require('body-parser');
+var path = require('path');
+
+
 const transporter = nodemailer.createTransport({
   service: 'Gmail',
   auth: {
