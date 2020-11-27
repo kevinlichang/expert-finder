@@ -115,12 +115,12 @@ body {
 }
 
 
-.resultContainer {
+/* .resultContainer {
   display: table;
   width: 100%;
-}
+} */
 
-.leftHalf {
+/* .leftHalf {
   background-color: #ff9e66;
   position: absolute;
   font-weight: 30;
@@ -132,16 +132,19 @@ body {
   position: absolute;
   right: 0px;
   width: 90%;
-}
+} */
 
 .tab4 { 
     tab-size: 8; 
 }
 
-.content{
-    margin-top: 100px;;
+/* .content{
+    margin-top: 100px;
+} */
+
+.col-centered{
+    margin: 0 auto;
+    float: none;
 }
-
-
 
   

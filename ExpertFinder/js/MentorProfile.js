@@ -1,8 +1,10 @@
-
-
-
-
-
+//data inheritted from search result page for the default displaying
+var update = localStorage['updateData'];
+var oldData;
+if(update){
+localStorage.removeItem('updateData');
+oldData = JSON.parse(update);
+}
 
 
 
@@ -30,6 +32,14 @@ function submitProfile(event){
 submitBtn.addEventListener("click",submitProfile);
 
 
+function fillOldData(obj){
+    var tempArr = [];
+    for(let i = 0; i < obj.length; i++){
+        tempArr[i] = {};
+        tempArr[i].Name = obj[i];
+    }
+    return tempArr;
+}
 
 /// Load table
 function LoadProfile(){
@@ -50,7 +60,23 @@ function LoadProfile(){
          "Org":[{"Name": "Climate Corp", "Show":"true", "UserAdded":"true"}] 
      }
 
-     MentorProfile = testProfile
+     //profile inheritted from the search result page
+     var testProfile2 = {};
+     if(oldData){
+        testProfile2.Fname = oldData.fname;
+        testProfile2.Lname = oldData.lname;
+        testProfile2.Email = oldData.email;
+        testProfile2.Phone = oldData.phone;
+        testProfile2.LinkedIn = oldData.linkedin;
+        testProfile2.Github = oldData.github;
+        testProfile2.Classes = fillOldData(oldData.classes);
+        testProfile2.Skills = fillOldData(oldData.skills);
+        testProfile2.Org = fillOldData(oldData.org);
+        MentorProfile = testProfile2;
+     }
+     else{
+        MentorProfile = testProfile
+    }
 };
 
 function displayProfile(){
@@ -150,11 +176,22 @@ $(document).ready(function(){
     });
 
 
-
+    
 
 //Submit button funciton. 
 
 
 
 
+
 });
+
+//values inheritted from result list page
+if(oldData){
+    $('#firstName').value = oldData.fname;
+    $('#firstName').value = oldData.lname;
+    $('#emailId').value = oldData.email;
+    $('#phoneId').value = oldData.phone;
+    $('#LinkedinId').value = oldData.linkedin;
+    $('#GitId').value = oldData.github;
+}
