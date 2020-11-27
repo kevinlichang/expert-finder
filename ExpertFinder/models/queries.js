@@ -1,7 +1,11 @@
 const e = require("express");
-const express = require("express")
+const express = require("express");
+const dbtemp = require("./db");
+const sqlite3 = require('sqlite3').verbose();
 
 queriesRouter = express.Router();
+
+
 
 
 // Account get 
@@ -154,7 +158,92 @@ queriesRouter.delete('/account', (req,res,next)=>{
 
 
   //tags
+  queriesRouter.get('/usertags', (req,res,next)=>{
+    let accountid = req.query.accountid;
+    let tagtype = req.query.tagtype;
 
+    var sql = "select * from user_tags"
+    sql += " where userid = ?"
+    sql += " and tag_type = ?"
+
+    db.all(sql,[accountid, tagtype],(err,rows)=>{
+      if(err){
+        res.status(500).json({"error": err.message});
+      }else{
+        let temp = rows
+        if(tagtype === "class"){
+          temp = {"classes": rows}
+        }else if(tagtype === "skill"){
+          temp = {"skills": rows}
+        }else{
+          temp = {"orgs": rows}
+        }
+        
+        res.status(200).json(temp);
+      }
+    });
+
+  });
+
+
+
+///test
+  queriesRouter.get('/profile', (req,res,next)=>{
+    let accountid = req.query.accountid;
+    //tag set up
+    var sql = "select tag_name,tag_description,tag_show from user_tags"
+    sql += " where userid = ?"
+    sql += " and tag_type = ?"
+    //user setup
+    let sql2 = 'select userid as accountid, fname, lname, phone, email, linkedin, github, twitter from user_info '
+    sql2 += 'where userid = ?'
+
+    //temp results veriables
+    let tempinfo ={}
+
+    db.get(sql2,accountid,(err,rows)=>{
+      if(err){
+        res.status(500).json({"error": err.message});
+      }else{
+        tempinfo = rows
+          //now run tag
+        db.all(sql,[accountid,"class"], (err,rows)=>{
+          if(err){
+            res.status(500).json({"error": err.message});
+          }else{
+            tempinfo["classes"] = rows;
+            //skill
+            db.all(sql,[accountid,"skill"], (err,rows)=>{
+              if(err){
+                res.status(500).json({"error": err.message});
+              }else{
+                tempinfo["skills"] = rows;
+                //org
+                db.all(sql,[accountid,"org"], (err,rows)=>{
+                  if(err){
+                    res.status(500).json({"error": err.message});
+                  }else{
+                    tempinfo["orgs"] = rows;
+                    console.log(tempinfo);
+                    res.status(200).json(tempinfo);
+        
+                  }
+                })
+                //end org
+                
+              }
+            })
+            //end skill
+            
+          }
+        })
+      }
+    });
+  });
+  
+
+
+  
 
   //export
 module.exports = queriesRouter;

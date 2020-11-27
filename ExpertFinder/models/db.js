@@ -3,34 +3,45 @@ const sqlite3 = require("sqlite3");
 const DB_ADDR = ":memory:";
 
 const users = [
-    {
-        username: "clarjohn@oregonstate.edu",
-        userpassword: "password",
-        accountactive: true,
-        userid: 1,
-        fname: "John",
-        lname: "clarke",
-        phone: "999999999",
-        email: "clarjohn@oregonstate.edu",
-        linkedin: "https://www.linkedin.com/in/jclarkew/",
-        github: "https://github.com/clarjohn",
-        twitter: "",
-    },
-    {
-      username: "DoeJane@oregonstate.edu",
-      userpassword: "123",
-      accountactive: false,
-      userid: 2,
-      fname: "Jane",
-      lname: "Doe",
+  {
+      username: "clarjohn@oregonstate.edu",
+      userpassword: "password",
+      accountactive: true,
+      userid: 1,
+      fname: "John",
+      lname: "clarke",
       phone: "999999999",
-      email: "DoeJane@oregonstate.edu",
-      linkedin: "",
-      github: "",
+      email: "clarjohn@oregonstate.edu",
+      linkedin: "https://www.linkedin.com/in/jclarkew/",
+      github: "https://github.com/clarjohn",
       twitter: "",
-    },
+      classes:[{tag_name: "CS 161", tag_description:"Intro Computer Science" ,tag_show:true},
+                {tag_name: "CS 162", tag_description:"Intro Computer Science 2" ,tag_show:true},
+                {tag_name: "CS 290", tag_description:"Intro web development" ,tag_show:true}],
+      skills:[{tag_name: "Python", tag_description:"" ,tag_show:true},
+              {tag_name: "SQL", tag_description:"" ,tag_show:true}],
+      org:[{tag_name: "Climate Corp", tag_description:"Product Manager" ,tag_show:true}],
+  },
+  {
+    username: "DoeJane@oregonstate.edu",
+    userpassword: "123",
+    accountactive: false,
+    userid: 2,
+    fname: "Jane",
+    lname: "Doe",
+    phone: "999999999",
+    email: "DoeJane@oregonstate.edu",
+    linkedin: "",
+    github: "",
+    twitter: "",
+    classes:[{tag_name: "CS 161", tag_description:"Intro Computer Science" ,tag_show:true},
+            {tag_name: "CS 162", tag_description:"Intro Computer Science 2" ,tag_show:true},
+            {tag_name: "CS 290", tag_description:"Intro web development" ,tag_show:true}],
+    skills:[{tag_name: "Python", tag_description:"" ,tag_show:true},
+            {tag_name: "SQL", tag_description:"" ,tag_show:true}],
+    org:[{tag_name: "Climate Corp", tag_description:"Product Manager" ,tag_show:true}],
+  },
 ];
-
 
 
 dbSchema = `CREATE TABLE IF NOT EXISTS  account_info (
@@ -94,7 +105,38 @@ const initDB = () => {
             insertuser.run([userid,fname,lname, phone, email, linkedin, github, twitter]);
         })
         insertuser.finalize();
+    
+    //classes
+    const insertclass = db.prepare("INSERT INTO user_tags(userid,tag_type,tag_name,tag_description, tag_show) VALUES (?,?,?,?,?)");
+    users.forEach(({userid, classes}, i) =>{
+      classes.forEach(({tag_name, tag_description, tag_show},i) =>{
+        insertclass.run([userid,"class",tag_name,tag_description,tag_show]);
+      })
+    })
+    insertclass.finalize();
 
+    ///
+
+     //skills
+     const insertskill = db.prepare("INSERT INTO user_tags(userid,tag_type,tag_name,tag_description, tag_show) VALUES (?,?,?,?,?)");
+     users.forEach(({userid, skills}, i) =>{
+       skills.forEach(({tag_name, tag_description, tag_show},i) =>{
+         insertskill.run([userid,"skill",tag_name,tag_description,tag_show]);
+       })
+     })
+     insertskill.finalize();
+ 
+     ///
+
+     
+     //skills
+     const insertorg = db.prepare("INSERT INTO user_tags(userid,tag_type,tag_name,tag_description, tag_show) VALUES (?,?,?,?,?)");
+     users.forEach(({userid, org}, i) =>{
+       org.forEach(({tag_name, tag_description, tag_show},i) =>{
+         insertorg.run([userid,"org",tag_name,tag_description,tag_show]);
+       })
+     })
+     insertorg.finalize();
 
     });
     return db;
