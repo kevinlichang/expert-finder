@@ -1,7 +1,7 @@
 const e = require("express");
 const express = require("express");
 const dbtemp = require("./db");
-const sqlite3 = require('sqlite3').verbose();
+
 
 queriesRouter = express.Router();
 
@@ -184,6 +184,57 @@ queriesRouter.delete('/account', (req,res,next)=>{
     });
 
   });
+
+
+  queriesRouter.post('/usertags', (req,res,next)=>{
+    let accountid = req.query.accountid;
+    let tagtype = req.query.tagtype;
+    let tags = req.body;
+
+    //create insert statement
+    var sql = "INSERT INTO user_tags(userid,tag_type,tag_name,"
+    var values = " VALUES (?,?,?"
+    
+    if(tagtype != 'skill'){
+      sql += " tag_description,"
+      values += ",?"    
+    }
+
+    sql += " tag_show)"
+    values += ",?)"
+    sql += values
+
+
+
+    tags.forEach(({tag_name,tag_description,tag_show} ,i) =>{
+      //console.log(accountid,tagtype,tag_name,tag_description,tag_show);
+      db.run(sql,[accountid,tagtype,tag_name,tag_description,tag_show])
+    })
+
+
+    
+    res.status(204).send();
+
+  })
+
+
+
+
+
+  queriesRouter.delete('/usertags', (req,res,next)=>{
+    let accountid = req.query.accountid;
+    let tagtype = req.query.tagtype;
+    let tags = req.body;
+
+    tags.forEach(({tag_name} ,i) =>{
+      //console.log(accountid,tagtype,tag_name,tag_description,tag_show);
+      db.run("delete from user_tags where userid = ? and tag_type = ? and tag_name = ?",[accountid,tagtype,tag_name])
+    })
+    
+    res.status(204).send();
+
+  })
+
 
 
 

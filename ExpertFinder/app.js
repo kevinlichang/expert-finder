@@ -47,8 +47,8 @@ app.use('/queries',queriesRouter);
 
 
 //Send Email Confirmation after Registration.
-const emailRouter = require('./models/emailConfirmRoute.js');
-app.use('/send-email-confirm',emailRouter);
+//const emailRouter = require('./models/emailConfirmRoute.js');
+//app.use('/send-email-confirm',emailRouter);
 
 
 
