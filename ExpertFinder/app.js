@@ -14,14 +14,14 @@ const { initDB } = require('./models/db.js');
 global.db = initDB();
 
 app.use(session({
-	secret: 'mySuperDuperSecret789BlahBlah',
-	resave: true,
-	saveUninitialized: true
+  secret: 'mySuperDuperSecret789BlahBlah',
+  resave: true,
+  saveUninitialized: true
 }));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
-    extended: true,
-  })
+  extended: true,
+})
 )
 app.use(express.static(__dirname + '/'))
 
@@ -37,8 +37,8 @@ const getAccount = (req, res) => {
 }
 
 // Starting Page
-app.get('/', function(req, res) {
-	res.sendFile(path.join(__dirname + '/index.html'));
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname + '/index.html'));
 });
 
 ///test db connection and server connection, Should now only load if index.html isn't found
