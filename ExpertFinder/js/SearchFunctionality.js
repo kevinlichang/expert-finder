@@ -124,8 +124,10 @@ function getData(){
 	}else{
 		payload.searchName = false;
 	}
-	req.open('POST', '', true);
+	postLink = 'localhost:4001/queries/searchprofiles?searchName=' + payload.searchName;
+	req.open('POST', postLink, true);
 	req.setRequestHeader('Content-Type', 'application/json');
+	req.send(payload);
 	req.addEventListener('load',function(){
       if(req.status >= 200 && req.status < 400){
         var response = JSON.parse(req.responseText);
@@ -334,7 +336,7 @@ function storeUpdate(){
 
 
 //sendData();
-//getData();
+//expertList = getData();
 listNames(expertList);
 showProfile(expertList,0);
 
