@@ -4,9 +4,9 @@ if(data){
 var inputString = JSON.parse(data).content;
 var inputType = JSON.parse(data).type;
 }
-var apiKey = "";
 var expertList = [];
 var profileIndex = 0;
+var postLink = 'localhost:4001/queries/searchprofiles?searchName=';
 
 
 
@@ -124,7 +124,7 @@ function getData(){
 	}else{
 		payload.searchName = false;
 	}
-	postLink = 'localhost:4001/queries/searchprofiles?searchName=' + payload.searchName;
+	postLink += payload.searchName;
 	req.open('POST', postLink, true);
 	req.setRequestHeader('Content-Type', 'application/json');
 	req.send(payload);
