@@ -235,7 +235,15 @@ queriesRouter.delete('/usertags', (req, res, next) => {
 
 })
 
+// Login Authentication
+queriesRouter.post('auth', (req, res) => {
+  let username = req.body.username;
+  let userpassword = req.body.userpassword;
 
+  if (username && userpassword) {
+
+  }
+})
 
 
 ///test
