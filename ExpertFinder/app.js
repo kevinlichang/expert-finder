@@ -48,12 +48,38 @@ app.get('/', (req, res, next) => {
 
 
 
-
-
 //Accounts
 const queriesRouter = require('./models/queries.js');
+const db = require('./models/db.js');
 app.use('/queries', queriesRouter);
 
+
+// Login
+app.post('/login', (req, res) => {
+  let username = req.body.username;
+  let userpassword = req.body.userpassword;
+  let sql = 'select * from account_info where username= ? and userpassword = ?'
+
+  if (username && userpassword) {
+    // Getting an error that 'TypeError: db.all is not a function' here
+    db.all(sql, [username, userpassword], (err, rows) => {
+      if (rows.length > 0) {
+        req.session.loggedin = true;
+        req.session.username = username;
+        console.log('TEST A');
+        res.redirect('/');        
+      } else {
+        console.log('TEST B');
+        res.send('Incorrect Username and/or Password.');
+      }
+      res.end();
+    })
+  } else {
+    console.log('TEST C');
+    res.send('Please enter Username and Password.');
+    res.end();
+  }
+});
 
 //Send Email Confirmation after Registration.
 //const emailRouter = require('./models/emailConfirmRoute.js');

@@ -1,5 +1,6 @@
 const e = require("express");
 const express = require("express");
+const db = require("./db");
 const dbtemp = require("./db");
 
 
@@ -219,8 +220,6 @@ queriesRouter.post('/usertags', (req, res, next) => {
 
 
 
-
-
 queriesRouter.delete('/usertags', (req, res, next) => {
   let accountid = req.query.accountid;
   let tagtype = req.query.tagtype;
@@ -235,15 +234,7 @@ queriesRouter.delete('/usertags', (req, res, next) => {
 
 })
 
-// Login Authentication
-queriesRouter.post('auth', (req, res) => {
-  let username = req.body.username;
-  let userpassword = req.body.userpassword;
 
-  if (username && userpassword) {
-
-  }
-})
 
 
 ///test

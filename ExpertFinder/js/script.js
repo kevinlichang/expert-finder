@@ -1,4 +1,4 @@
-// Script to make change Navbar when user scrolls down
+// Script to change Navbar when user scrolls down
 $(function () {
     $(document).scroll(function () {
         var $nav = $("#mainNavbar");
