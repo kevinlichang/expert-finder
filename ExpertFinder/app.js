@@ -67,17 +67,17 @@ app.post('/login', (req, res) => {
         req.session.loggedin = true;
         req.session.username = username;
         console.log('TEST A');
-        res.redirect('/');        
+        res.redirect('/', {loginStatus: true});        
       } else {
         console.log('TEST B');
-        res.send('Incorrect Username and/or Password.');
+        res.send('Incorrect Username and/or Password.', {loginStatus: false});
       }
-      res.end();
+      
     })
   } else {
     console.log('TEST C');
-    res.send('Please enter Username and Password.');
-    res.end();
+    res.send('Please enter Username and Password.', {loginStatus: false});
+    
   }
 });
 
