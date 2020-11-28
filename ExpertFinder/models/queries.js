@@ -292,7 +292,39 @@ queriesRouter.delete('/account', (req,res,next)=>{
     });
   });
   
+  //search
+  queriesRouter.post('/searchprofiles', (req,res,next)=>{
+    //get veriables
+    let searchName = req.query.searchName
+    let values = req.body.values
 
+    //set search based on if we are searching names or tags
+    
+    if(searchName === 'true'){
+       sql = "select userid from user_info where fname in (" + values.map(function(){return '?'}).join(',') +") or lname in (" + values.map(function(){return '?'}).join(',') + ")"
+      
+    }else{
+       sql = "select userid from USER_TAGS where tag_name in (" + values.map(function(){return '?'}).join(',') + ")"
+     
+    }
+
+    //begin find match users
+    db.all(sql,values,(err,rows)=>{
+      if(err){
+        res.status(500).json({"error": err.message});
+      }else{
+          let userResults = rows
+          let userValues = [];
+          userResults.forEach(({userid},i)=>{
+            userValues.push(userid);
+          })
+          res.status(200).json(userValues)
+      }
+    });
+    //end of find matching users
+
+
+  });
 
   
 
