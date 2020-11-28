@@ -236,7 +236,6 @@ queriesRouter.delete('/usertags', (req, res, next) => {
 
 
 
-
 ///test
 queriesRouter.get('/profile', (req, res, next) => {
   let accountid = req.query.accountid;
@@ -288,19 +287,16 @@ queriesRouter.get('/profile', (req, res, next) => {
         }
       })
     }
-  });
-<<<<<<< HEAD
-  
+  });  
+});
+
+
+
   //search
   queriesRouter.post('/searchprofiles', (req,res,next)=>{
     //get veriables
     let searchName = req.query.searchName
     let values = req.body.values
-=======
-});
-
-
->>>>>>> bead9d371d3063ea3613e386413a6252ca8240f4
 
     //set search based on if we are searching names or tags
     
@@ -329,7 +325,6 @@ queriesRouter.get('/profile', (req, res, next) => {
 
 
   });
-
 
 //export
 module.exports = queriesRouter;
