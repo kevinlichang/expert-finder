@@ -37,7 +37,7 @@ const getAccount = (req, res) => {
 }
 
 // Starting Page
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/index.html'));
 });
 
@@ -84,6 +84,11 @@ app.post('/login', (req, res) => {
 //Send Email Confirmation after Registration.
 //const emailRouter = require('./models/emailConfirmRoute.js');
 //app.use('/send-email-confirm',emailRouter);
+
+// 404 Error Page
+app.use((req, res) =>{
+  res.sendFile(path.join(__dirname + '/404.html'));
+})
 
 
 
