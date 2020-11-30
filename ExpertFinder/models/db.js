@@ -158,6 +158,7 @@ const initDB = () => {
      insertorg.finalize();
 
     });
+    console.log("Database Created")
     return db;
 };
 

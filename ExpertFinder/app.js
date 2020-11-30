@@ -50,7 +50,7 @@ app.get('/', (req, res, next) => {
 
 //Accounts
 const queriesRouter = require('./models/queries.js');
-const db = require('./models/db.js');
+
 app.use('/queries', queriesRouter);
 
 
