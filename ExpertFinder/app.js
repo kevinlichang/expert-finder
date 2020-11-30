@@ -81,9 +81,13 @@ app.post('/login', (req, res) => {
   }
 });
 
-//Send Email Confirmation after Registration.
-//const emailRouter = require('./models/emailConfirmRoute.js');
-//app.use('/send-email-confirm',emailRouter);
+
+// Send Email Confirmation after Registration.
+const emailRouter = require('./models/emailConfirmRoute.js');
+app.use(emailRouter);
+
+
+
 
 // 404 Error Page
 app.use((req, res) =>{
