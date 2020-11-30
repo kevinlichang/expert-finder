@@ -66,6 +66,8 @@ app.post('/login', (req, res) => {
       if (rows.length > 0) {
         req.session.loggedin = true;
         req.session.username = username;
+        // Store the userID from the current row
+        req.session.userID = rows[0].id        
         console.log('TEST A');
         res.redirect('/');        
       } else {
