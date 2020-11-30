@@ -1,5 +1,7 @@
 /// Variable to hold actions 
 
+var id = 0;
+
 var actions = 
 '<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>' +
 '<a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>' +
@@ -76,6 +78,15 @@ $(document).ready(function(){
             $('.add-new').removeAttr("disabled");
         }
 
+        // POST request when clicking on add
+        var type = "";
+
+        $.ajax({
+            url: "localhost:4001/queries/usertags?accountid=" + id + "&tagtype=" + type + "",
+            method: "POST",
+            data: {"tag_name": "","tag_description": "" ,"tag_show": ""}
+         });   
+
     });
 
 // Edit row on edit button click
@@ -85,6 +96,15 @@ $(document).ready(function(){
         });     
         $(this).parents("tr").find(".add, .edit").toggle();
         $(".add-new").attr("disabled", "disabled");
+
+        // POST request when clicking on edit button
+        var type = "";
+
+        $.ajax({
+            url: "localhost:4001/queries/usertags?accountid=" + id + "&tagtype=" + type + "",
+            method: "POST",
+            data: {"tag_name": "","tag_description": "" ,"tag_show": ""}
+         });   
     });
 
 // Delete row on delete button click
@@ -92,6 +112,15 @@ $(document).ready(function(){
         $(this).tooltip('hide');
         $(this).parents("tr").remove();
         $(".add-new").removeAttr("disabled");
+
+        // DELETE request when clicking on delete button
+        var type = "";
+
+        $.ajax({
+            url: "localhost:4001/queries/usertags?accountid=" + id + "&tagtype=" + type + "",
+            method: "DELETE",
+            data: {"tag_name": "","tag_description": "" ,"tag_show": ""}
+         });   
     });
 
 }); 
