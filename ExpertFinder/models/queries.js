@@ -1,7 +1,6 @@
-const e = require("express");
 const express = require("express");
-const db = require("./db");
-const dbtemp = require("./db");
+
+
 
 
 queriesRouter = express.Router();
@@ -235,7 +234,6 @@ queriesRouter.delete('/usertags', (req, res, next) => {
 })
 
 
-
 ///test
 queriesRouter.get('/profile', (req, res, next) => {
   let accountid = req.query.accountid;
@@ -286,6 +284,7 @@ queriesRouter.get('/profile', (req, res, next) => {
 
         }
       })
+      //end tags
     }
   });  
 });

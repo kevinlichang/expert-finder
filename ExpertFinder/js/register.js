@@ -8,7 +8,8 @@ var actions =
 //variables for urls for endpoints
 var url = document.URL;
 url = url.slice(0, -14)
-var confirmURL = url + "/confirm-profile.html"
+var confirmURL = url + "/confirm-profile"
+console.log(url)
 
 
 //// dynamic Table Classes
@@ -100,7 +101,7 @@ $(document).ready(function(){
 //Submit button funciton. 
 
     $("#register-submit").click(function(){   
-
+        
         //data to be sent to database
 
 
@@ -117,13 +118,14 @@ $(document).ready(function(){
         var fullName = $("#firstname").val() + " " + $("#lastname").val();
         var confirmProfileLink = confirmURL + "?email=" + $("#email").val();
         text = "A new profile has been registered for " + fullName + ". Please click here to confirm: " + confirmProfileLink;
-    
-        $.get(url + "send-email-confirm",
-        {
-            to:to,
+
+        $.get(url + "/send-email-confirm",
+        {   to:to,
             subject:subject,
             text:text},
-            null)
+            null);
+    
+
     });
 
 

@@ -50,7 +50,7 @@ app.get('/', (req, res, next) => {
 
 //Accounts
 const queriesRouter = require('./models/queries.js');
-const db = require('./models/db.js');
+
 app.use('/queries', queriesRouter);
 
 
@@ -66,24 +66,30 @@ app.post('/login', (req, res) => {
       if (rows.length > 0) {
         req.session.loggedin = true;
         req.session.username = username;
+        // Store the userID from the current matching row as the session ID
+        req.session.ID = rows[0].id        
         console.log('TEST A');
-        res.redirect('/', {loginStatus: true});        
+        res.redirect('/');        
       } else {
         console.log('TEST B');
-        res.send('Incorrect Username and/or Password.', {loginStatus: false});
+        res.send('Incorrect Username and/or Password.');
       }
       
     })
   } else {
     console.log('TEST C');
-    res.send('Please enter Username and Password.', {loginStatus: false});
+    res.send('Please enter Username and Password.');
     
   }
 });
 
-//Send Email Confirmation after Registration.
-//const emailRouter = require('./models/emailConfirmRoute.js');
-//app.use('/send-email-confirm',emailRouter);
+
+// Send Email Confirmation after Registration.
+const emailRouter = require('./models/emailConfirmRoute.js');
+app.use(emailRouter);
+
+
+
 
 // 404 Error Page
 app.use((req, res) =>{
