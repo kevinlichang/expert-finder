@@ -101,8 +101,16 @@ $(document).ready(function(){
 //Submit button funciton. 
 
     $("#register-submit").click(function(){   
-        
+        let email = $("#email").val()
+        let fname = $("#firstname").val()
+        let lname = $("#lastname").val()
+        let pwd = $("#psw").val()
         //data to be sent to database
+        // $.post(url + "/queries/account", 
+        //     {
+                
+        //     }
+        //     );
 
 
 
@@ -112,17 +120,18 @@ $(document).ready(function(){
 
         // Sending email function
         var to,subject,text; 
-        to=$("#email").val();
-        subject = "Confirm Profile for " + $("#firstname").val();
+        to=email;
+        subject = "Confirm Profile for " + fname;
 
-        var fullName = $("#firstname").val() + " " + $("#lastname").val();
-        var confirmProfileLink = confirmURL + "?email=" + $("#email").val() + "&password=" + $("#psw").val();
+        var fullName = fname + " " + lname;
+        var confirmProfileLink = confirmURL + "?email=" + email + "&password=" + pwd;
         text = "A new profile has been registered for " + fullName + ". Please click here to confirm: " + confirmProfileLink;
 
         $.get(url + "/send-email-confirm",
-        {   to:to,
-            subject:subject,
-            text:text},
+            {   to:to,
+                subject:subject,
+                text:text
+            },
             null
         );
     

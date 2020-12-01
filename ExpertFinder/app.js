@@ -99,11 +99,15 @@ app.get('/sessionID', (req, res) => {
 });
 
 
+
+
 // Send Email Confirmation after Registration.
 const emailRouter = require('./models/emailConfirmRoute.js');
 app.use(emailRouter);
 
-
+// Confirm Profile Page after registration
+const confirmPageRouter = require('./models/confirmProfile.js');
+app.use(confirmPageRouter);
 
 
 // 404 Error Page
