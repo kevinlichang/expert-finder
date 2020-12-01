@@ -1,6 +1,7 @@
 var express = require("express");
 
-const db = require("./db");
+const { initDB } = require('./db.js');
+let db = initDB();
 
 
 
@@ -12,13 +13,13 @@ confirmPageRouter.get('/confirm-profile', function(req, res) {
   
   let sql = 'select * from user_info where email = ?'
   
-  // db.get(sql, email, (err, rows) => {
-  //   if (err) {
-  //     res.status(500).json({ "error": err.message });
-  //   } else {
-  //     console.log(rows)
-  //   }
-  // })
+  db.get(sql, email, (err, rows) => {
+    if (err) {
+      res.status(500).json({ "error": err.message });
+    } else {
+      console.log(rows)
+    }
+  })
 
 
   var options = {
