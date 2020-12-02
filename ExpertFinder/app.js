@@ -49,7 +49,7 @@ const getAccount = (req, res) => {
 
 // Starting Page
 app.get('/',function(req,res){
-  res.render('index') 
+  res.render('index', {javascript: '<script src="js/HomeSearch.js"></script>'}) 
 });
 
 // About Page
@@ -65,12 +65,12 @@ app.get('/add-new-expert.html',function(req,res){
 
 // edit Page
 app.get('/edit.html',function(req,res){
-  res.render('edit') 
+  res.render('edit', {javascript: '<script src="js/edit.js"></script>'}) 
 });
 
 // index Page
 app.get('/index.html',function(req,res){
-  res.render('index') 
+  res.render('index', {javascript: '<script src="js/HomeSearch.js"></script>'}) 
 });
 
 // login Page
@@ -80,17 +80,22 @@ app.get('/login.html',function(req,res){
 
 // mentor-profile Page
 app.get('/mentor-profile.html',function(req,res){
-  res.render('mentor-profile') 
+  res.render('mentor-profile', {javascript: '<script src="js/MentorProfile.js"></script>'}) 
 });
 
 // register Page
 app.get('/register.html',function(req,res){
-  res.render('register') 
+  res.render('register', {javascript: '<script src="js/register.js"></script>'}) 
 });
 
 // result-list Page
 app.get('/result-list.html',function(req,res){
-  res.render('result-list') 
+  res.render('result-list', {javascript: '<script src="js/SearchFunctionality.js"></script>'}) 
+});
+
+// confirm-profile Page
+app.get('/confirm-profile.html',function(req,res){
+  res.render('confirm-profile', {javascript: '<script src="js/HomeSearch.js"></script>'}) 
 });
 
 
