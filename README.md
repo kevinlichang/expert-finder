@@ -12,7 +12,7 @@ To Use:
 3. Run Node to start app.js (Type "node app.js") in the local directory to bring up the app 
 
 
-FOR BRANCH:
+FOR NEW BRANCH:
 
 -Added a branch that is using handlebars. This could be merged into the main branch if we all want it (and it wont break anything)
 -Tested by hosting locally with Node, and the pages are all being hosted and working correctly.
