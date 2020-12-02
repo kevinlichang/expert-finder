@@ -14,10 +14,21 @@ To Use:
 
 FOR NEW BRANCH:
 
--Added a branch that is using handlebars. This could be merged into the main branch if we all want it (and it wont break anything)
+-Should merge this ASAP to avoid future collisions
+-Using handlebars.
 -Tested by hosting locally with Node, and the pages are all being hosted and working correctly.
 -Merged the CSS into one CSS file.
 
--When updating individual pages, just update the view file for the page, the layout main is the features that carry accross all pages. 
+-When updating individual pages, just update the view file for the page, the layout "main" is all the features that will carry across all pages. 
 -Can now use handlebars to easily inject and render dynamic content in the pages.
 -To add additional javascript files, put the src in the app.js route for the page you are working on
+
+The file structure changed substantially, any code that references the old file structure needs to be looked at.
+
+-Login and Logout buttons now update on the user being logged in or not
+
+-Session should be working, and is currently sending back :
+userName: req.session.username
+userID: req.session.ID
+
+The session ID should be based on the row for the user in the DB (so the userID)
