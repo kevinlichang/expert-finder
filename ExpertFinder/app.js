@@ -62,10 +62,6 @@ app.get('/add-new-expert.html',function(req,res){
   res.render('add-new-expert') 
 });
 
-// confirm-profile Page
-app.get('/confirm-profile.html',function(req,res){
-  res.render('confirm-profile') 
-});
 
 // edit Page
 app.get('/edit.html',function(req,res){
