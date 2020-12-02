@@ -13,17 +13,23 @@ confirmPageRouter.get('/confirm-profile', function(req, res) {
   
   let sql = 'select * from user_info where email = ?'
   
-  db.get(sql, email, (err, rows) => {
+  db.get(sql, email, (err, data) => {
     if (err) {
       res.status(500).json({ "error": err.message });
     } else {
-      console.log(rows)
+      var context = {
+        results: data
+      };
+      console.log(context.results)
+
+
+      res.render('confirm-profile', context);
     }
   })
 
 
 
-  res.render('confirm-profile');
+  
 
 
 });
