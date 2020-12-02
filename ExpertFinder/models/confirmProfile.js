@@ -9,9 +9,10 @@ confirmPageRouter = express.Router();
 
 confirmPageRouter.get('/confirm-profile', function(req, res) {
   let email = req.query.email;
-
   
   let sql = 'select * from user_info where email = ?'
+
+
   
   db.get(sql, email, (err, data) => {
     if (err) {
