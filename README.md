@@ -20,5 +20,3 @@ FOR NEW BRANCH:
 
 -When updating individual pages, just update the view file for the page, the layout main is the features that carry accross all pages. 
 -Can now use handlebars to easily inject and render dynamic content in the pages.
--Just add any new js files to the bottom of the view file iof needed,  
-  ie.  <script src="js/register.js"></script>
