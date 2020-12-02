@@ -116,15 +116,15 @@ $(document).ready(function(){
         subject = "Confirm Profile for " + $("#firstname").val();
 
         var fullName = $("#firstname").val() + " " + $("#lastname").val();
-        var confirmProfileLink = confirmURL + "?email=" + $("#email").val();
+        var confirmProfileLink = confirmURL + "?email=" + $("#email").val() + "&password=" + $("#psw").val();
         text = "A new profile has been registered for " + fullName + ". Please click here to confirm: " + confirmProfileLink;
 
         $.get(url + "/send-email-confirm",
         {   to:to,
             subject:subject,
             text:text},
-            null);
-    
+            null
+        );
 
     });
 
