@@ -1,0 +1,147 @@
+<div class="container colored">
+
+  <h1 class="m-4">Confirm Profile</h1>
+
+  <div class="row row-cols-2">
+    <div class="col">
+      <h4>Name:</h4>
+    </div>
+    <div class="col">
+      <h4>Email:</h4>
+    </div>
+    <div class="col" id="name-conf">
+      John Smith
+    </div>
+    <div class="col" id="email-conf">
+      jsmith@email.com
+    </div>
+  </div>
+
+  <div class="row pt-4">
+    <div class="col">
+      <h4>Skills:</h4>
+    </div>
+  </div>
+
+  <div class="row row-cols-4">
+    <div class="col">
+      HTML
+    </div>
+    <div class="col">
+      CSS
+    </div>
+    <div class="col">
+      Javascript
+    </div>
+    <div class="col">
+      Python
+    </div>
+    <div class="col">
+      C++
+    </div>
+  </div>
+
+  <div class="row pt-4">
+    <div class="col">
+      <h4>Coursework:</h4>
+    </div>
+  </div>
+
+  <div class="row row-cols-4">
+    <div class="col">
+      CS 161
+    </div>
+    <div class="col">
+      CS 162
+    </div>
+    <div class="col">
+      CS 225
+    </div>
+    <div class="col">
+      CS 271
+    </div>
+    <div class="col">
+      CS 340
+    </div>
+    <div class="col">
+      CS 361
+    </div>
+  </div>
+
+  <div class="row pt-4">
+    <div class="col">
+      <h4>Organization:</h4>
+    </div>
+  </div>
+
+  <div class="row row-cols-4">
+    <div class="col">
+      Yelp
+    </div>
+  </div>
+
+  <div class="row row-cols-2 pt-4">
+    <div class="col">
+      <h4>Github:</h4>
+    </div>
+    <div class="col">
+      <h4>Twitter:</h4>
+    </div>
+    <div class="col" id="github-conf">
+      github.com/jsmith
+    </div>
+    <div class="col" id="twitter-conf">
+      twitter.com/jsmith
+    </div>
+  </div>
+
+  <div class="row justify-content-end">
+    <div class="col-3">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#accepted-modal">
+        Accept
+      </button>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#declined-modal">
+        Decline
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Accept Profile Modal -->
+<div class="modal fade" id="accepted-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Profile Confirmed
+      </div>
+      <div class="modal-footer">
+        <a type="button" class="btn btn-secondary" href="index.html">Home</a>
+        <a type="button" class="btn btn-primary" href="account.html">Go to Profile</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Decline Profile Modal -->
+<div class="modal fade" id="declined-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Profile Declined
+      </div>
+      <div class="modal-footer">
+        <a type="button" class="btn btn-secondary" href="index.html">Home</a>
+      </div>
+    </div>
+  </div>
+</div>

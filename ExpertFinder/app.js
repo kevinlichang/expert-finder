@@ -1,12 +1,18 @@
 //create express instance
 const express = require('express');
-//var cookieParser = require('cookie-parser');
+var cookieParser = require('cookie-parser');
 var session = require('express-session');
+var exphbs = require('express-handlebars');
 var path = require('path');
 const bodyParser = require('body-parser');
 const app = express();
 const PORT = process.env.PORT || 4001;
+app.use(express.static(__dirname + '/public'));
 
+
+app.set('views', path.join(__dirname, 'views'));
+app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
 
 //Database connection
 
@@ -14,7 +20,7 @@ const PORT = process.env.PORT || 4001;
 const { initDB } = require('./models/db.js');
 global.db = initDB();
 
-//app.use(cookieParser());
+app.use(cookieParser());
 app.use(session({
   secret: 'mySuperDuperSecret789BlahBlah',
   resave: true,
@@ -25,7 +31,8 @@ app.use(bodyParser.urlencoded({
   extended: true,
 })
 )
-app.use(express.static(__dirname + '/'));
+// app.use(express.static(path.join(__dirname + 'public')));
+//app.use(express.static('public'));
 
 
 // load queries
@@ -40,18 +47,57 @@ const getAccount = (req, res) => {
 }
 
 
-// // Starting Page
-// app.get('/', (req, res) => {  
-//   console.log('Hi this is a test');
-//   res.sendFile(path.join(__dirname + '/index.html'));  
+// Starting Page
+app.get('/',function(req,res){
+  res.render('index') 
+});
 
-// });
+// About Page
+app.get('/about.html',function(req,res){
+  res.render('about') 
+});
+
+// add-new-expert Page
+app.get('/add-new-expert.html',function(req,res){
+  res.render('add-new-expert') 
+});
+
+// confirm-profile Page
+app.get('/confirm-profile.html',function(req,res){
+  res.render('confirm-profile') 
+});
+
+// edit Page
+app.get('/edit.html',function(req,res){
+  res.render('edit') 
+});
+
+// index Page
+app.get('/index.html',function(req,res){
+  res.render('index') 
+});
+
+// login Page
+app.get('/login.html',function(req,res){
+  res.render('login') 
+});
+
+// mentor-profile Page
+app.get('/mentor-profile.html',function(req,res){
+  res.render('mentor-profile') 
+});
+
+// register Page
+app.get('/register.html',function(req,res){
+  res.render('register') 
+});
+
+// result-list Page
+app.get('/result-list.html',function(req,res){
+  res.render('result-list') 
+});
 
 
-// ///test db connection and server connection, Should now only load if index.html isn't found
-// app.get('/', (req, res, next) => {
-//   res.send('Hello World!')
-// });
 
 
 
@@ -61,7 +107,7 @@ const queriesRouter = require('./models/queries.js');
 app.use('/queries', queriesRouter);
 
 
-// Login
+// User Login Router
 var sessID;
 app.post('/login', (req, res) => {
   let username = req.body.username;
@@ -107,9 +153,10 @@ app.use(emailRouter);
 
 
 // 404 Error Page
-app.use((req, res) =>{
-  res.sendFile(path.join(__dirname + '/404.html'));
-})
+app.use(function(req, res){
+  res.status(404);
+  res.render('404');
+});
 
 
 

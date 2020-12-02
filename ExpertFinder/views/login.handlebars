@@ -1,0 +1,61 @@
+<nav id="mainNavbar" class="navbar navbar-expand-md fixed-top navbar-dark">
+  <a href="index.html" class="navbar-brand">Expert Finder</a>
+  <button class="navbar-toggler" data-toggle="collapse" data-target="#navLinks" aria-label="Toggle Navbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navLinks">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a href="index.html" class="nav-link">SEARCH</a>
+      </li>
+      <li class="nav-item">
+        <a href="add-new-expert.html" class="nav-link">RECOMMEND</a>
+      </li>
+      <li class="nav-item">
+        <a href="about.html" class="nav-link">ABOUT</a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav ml-auto">
+      <li class="nav-item">
+        <a href="mentor-profile.html" class="nav-link">PROFILE</a>
+      </li>
+      <li class="nav-item">
+        <a href="login.html" class="nav-link">LOGIN</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+<p></p>
+
+<div class="container-fluid">
+  <div class="container colored text-center col-10 col-md-6 col-lg-6 col-xl-4">
+    <div>
+      <h2>Already a Mentor?</h2>
+    </div>
+    <div class="login-form">
+      <form action="/login" method="POST">
+        <div class="container">
+          <div class="form-group">
+            <label for="username"><b>Username</b></label>
+            <input type="text" class="form-control" placeholder="Enter Username" name="username" id="username" required>
+          </div>
+          <div class="form-group">
+            <label for="userpassword"><b>Password</b></label>
+            <input type="password" class="form-control" placeholder="Enter Password" name="userpassword"
+              id="userpassword" required>
+          </div>
+          <div>
+            <button type="submit" class="btn btn-primary btn-lg">Login</button>
+          </div>
+        </div>
+      </form>
+
+    </div>
+    <div class="container">
+      <span class="register"><a href="register.html">Need an account?</a></span>
+    </div>
+    <br>
+  </div>
+</div>

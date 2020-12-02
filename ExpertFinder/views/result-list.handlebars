@@ -1,0 +1,105 @@
+
+<p></p>
+<div class="container-fluid">
+  <div class="text-center tableFont">
+    <h2>Search result for <q id="searchInputString"></q><span id="searchInputType"></span></h2>
+    <br>
+  </div>
+  <div class="container-fluid row">
+    <!-- <div section="resultContainer"> -->
+    <div class="col-md-2 leftHalf">
+      <table class="table table-bordered unselected">
+        <thead>
+          <tr>
+            <th scope="col">List of Experts:</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+        </tbody>
+      </table>
+    </div>
+    <!-- </div> -->
+
+    <!-- <div section="resultContainer"> -->
+    <div class="container-fluid col-md-10 rightHalf colored">
+
+      <div class="container-fluid">
+        <table class="table fixedTable tableFont">
+          <tbody>
+            <tr>
+              <td><img src="imgs/GitHub-Mark-120px-plus.png" class="img-fluid" alt="Github Logo" width="80" height="80">
+              </td>
+              <td>
+              <td><a class="btn btn-primary" href="mentor-profile.html" role="button" id="updateRequest"
+                  onclick="storeUpdate();">Update CSO</a></td>
+              </td>
+            </tr>
+
+            <tr>
+
+              <td>
+                <h2 id="selectedName"></h2>
+              </td>
+
+            </tr>
+            <tr>
+              <th>Email</th>
+              <td id="selectedEmail"></td>
+            </tr>
+            <tr>
+            <tr>
+              <th>Phone</th>
+              <td id="selectedPhone"></td>
+            </tr>
+            <tr>
+              <th>Classes</th>
+              <td id="selectedClasses"></td>
+            </tr>
+            <tr>
+              <th>Skills</th>
+              <td id="selectedSkills"></td>
+            </tr>
+            <tr>
+              <th>Industries/Organiztions</th>
+              <td id="selectedOrg"></td>
+            </tr>
+            <tr>
+              <th>LinkedIn</th>
+              <td><a id="selectedLinkedin"></a></td>
+            </tr>
+            <tr>
+              <th>Twitter</th>
+              <td><a id="selectedTwitter"></a></td>
+            </tr>
+            <tr>
+              <th>Github</th>
+              <td><a id="selectedGit"></a></td>
+            </tr>
+            <tr>
+              <th>Github Project(s)</th>
+              <td id="projectDisplay">
+                <!-- Trigger/Open The Modal -->
+                <button id="myBtn"></button>
+                <!-- The Modal -->
+                <div id="myModal" class="modal">
+                  <!-- Modal content -->
+                  <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h3>Repos</h3>
+                    <div class="repos"></div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <!--<tr><td><td>...</td><td><a class="text-primary">more</a></td></tr>-->
+          </tbody>
+        </table>
+      </div>
+
+
+    </div>
+    <!-- </div> -->
+  </div>
+
+
+  <script src="js/SearchFunctionality.js"></script>
