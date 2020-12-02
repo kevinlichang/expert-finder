@@ -11,7 +11,7 @@ app.use(express.static(__dirname + '/public'));
 
 
 app.set('views', path.join(__dirname, 'views'));
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
 //Database connection
@@ -19,6 +19,7 @@ app.set('view engine', 'handlebars');
 
 const { initDB } = require('./models/db.js');
 global.db = initDB();
+
 
 app.use(cookieParser());
 app.use(session({
@@ -31,9 +32,6 @@ app.use(bodyParser.urlencoded({
   extended: true,
 })
 )
-// app.use(express.static(path.join(__dirname + 'public')));
-//app.use(express.static('public'));
-
 
 // load queries
 const getAccount = (req, res) => {
@@ -48,58 +46,92 @@ const getAccount = (req, res) => {
 
 
 // Starting Page
-app.get('/',function(req,res){
-  res.render('index', {javascript: '<script src="js/HomeSearch.js"></script>'}) 
+app.get('/', function (req, res) {
+  res.render('index', {
+    javascript: '<script src="js/HomeSearch.js"></script>',
+    userName: req.session.username,
+    userID: req.session.ID
+  })
 });
 
 // About Page
-app.get('/about.html',function(req,res){
-  res.render('about') 
+app.get('/about.html', function (req, res) {
+  res.render('about', {
+    userName: req.session.username,
+    userID: req.session.ID
+  })
 });
 
 // add-new-expert Page
-app.get('/add-new-expert.html',function(req,res){
-  res.render('add-new-expert') 
+app.get('/add-new-expert.html', function (req, res) {
+  res.render('add-new-expert', {
+    userName: req.session.username,
+    userID: req.session.ID
+  })
 });
 
 
 // edit Page
-app.get('/edit.html',function(req,res){
-  res.render('edit', {javascript: '<script src="js/edit.js"></script>'}) 
+app.get('/edit.html', function (req, res) {
+  res.render('edit', {
+    javascript: '<script src="js/edit.js"></script>',
+    userName: req.session.username,
+    userID: req.session.ID
+  })
 });
 
 // index Page
-app.get('/index.html',function(req,res){
-  res.render('index', {javascript: '<script src="js/HomeSearch.js"></script>'}) 
+app.get('/index.html', function (req, res) {
+  res.render('index', {
+    javascript: '<script src="js/HomeSearch.js"></script>',
+    userName: req.session.username,
+    userID: req.session.ID
+  })
 });
 
 // login Page
-app.get('/login.html',function(req,res){
-  res.render('login') 
+app.get('/login.html', function (req, res) {
+  res.render('login', {
+    userName: req.session.username,
+    userID: req.session.ID
+  })
 });
 
 // mentor-profile Page
-app.get('/mentor-profile.html',function(req,res){
-  res.render('mentor-profile', {javascript: '<script src="js/MentorProfile.js"></script>'}) 
+app.get('/mentor-profile.html', function (req, res) {
+  res.render('mentor-profile', {
+    javascript: '<script src="js/MentorProfile.js"></script>',
+    userName: req.session.username,
+    userID: req.session.ID
+  })
 });
 
 // register Page
-app.get('/register.html',function(req,res){
-  res.render('register', {javascript: '<script src="js/register.js"></script>'}) 
+app.get('/register.html', function (req, res) {
+  res.render('register', {
+    javascript: '<script src="js/register.js"></script>',
+    userName: req.session.username,
+    userID: req.session.ID
+  })
 });
 
 // result-list Page
-app.get('/result-list.html',function(req,res){
-  res.render('result-list', {javascript: '<script src="js/SearchFunctionality.js"></script>'}) 
+app.get('/result-list.html', function (req, res) {
+  res.render('result-list', {
+    javascript: '<script src="js/SearchFunctionality.js"></script>',
+    userName: req.session.username,
+    userID: req.session.ID
+  })
 });
 
 // confirm-profile Page
-app.get('/confirm-profile.html',function(req,res){
-  res.render('confirm-profile', {javascript: '<script src="js/HomeSearch.js"></script>'}) 
+app.get('/confirm-profile.html', function (req, res) {
+  res.render('confirm-profile', {
+    javascript: '<script src="js/HomeSearch.js"></script>',
+    userName: req.session.username,
+    userID: req.session.ID
+  })
 });
-
-
-
 
 
 //Accounts
@@ -109,40 +141,52 @@ app.use('/queries', queriesRouter);
 
 
 // User Login Router
-var sessID;
 app.post('/login', (req, res) => {
   let username = req.body.username;
   let userpassword = req.body.userpassword;
   let sql = 'select * from account_info where username= ? and userpassword = ?'
 
-  if (username && userpassword) {    
+  if (username && userpassword) {
     db.all(sql, [username, userpassword], (err, rows) => {
       if (rows.length > 0) {
         req.session.loggedin = true;
         req.session.username = username;
 
         // Store the userID from the current matching row as the session ID
-        req.session.ID = rows[0].id        
-        console.log('Username and Password match found');   
+        req.session.ID = rows[0].id
+        console.log('Username and Password match found');
         console.log(req.cookies);
-        console.log('Current userID is: ' + req.session.ID);   
-        sessID = req.session.ID;          
-                
+        console.log('Current userID is: ' + req.session.ID);
+        sessID = req.session.ID;
+        res.render('login', {
+          loginMessage: '<script>alert("Welcome!");</script>',
+          userName: username,
+          userID: sessID
+        });
+
       } else {
         console.log('No username and password match found');
-        res.send('Incorrect Username and/or Password.');
+        res.render('login', { loginMessage: '<script>alert("Incorrect Username and/or Password.");</script>' });
       }
-      
+
     })
   } else {
     console.log('Username and/or password not entered');
-    res.send('Please enter Username and Password.');    
+    res.render('login', { loginMessage: '<script>alert("Enter a username and password.");</script>' });
   }
 });
 
+// Logout Router
+app.get('/logout.html',(req,res) => {
+  req.session.destroy(function (err) {
+    res.render('logout');
+   });
+})
+
+
 // Get sessionID json
 app.get('/sessionID', (req, res) => {
-  res.json({sessID: req.session.ID});  
+  res.json({ sessID: req.session.ID });
 });
 
 
@@ -157,7 +201,7 @@ app.use(confirmPageRouter);
 
 
 // 404 Error Page
-app.use(function(req, res){
+app.use(function (req, res) {
   res.status(404);
   res.render('404');
 });
