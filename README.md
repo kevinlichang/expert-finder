@@ -2,10 +2,6 @@
 Find experts in certain fields and contact them for help
 
 
-Update to app.js
--The app is able to be run with sqlite and hosted locally now
--Pages link together and user can access the site
-
 To Use:
 1. Download and install Node.js and all dependencies with npm locally
 2. Download and install Sqlite3
@@ -13,8 +9,6 @@ To Use:
 
 
 FOR MAIN NEW BRANCH:
-
--Should merge this ASAP to avoid future collisions
 
 -Using handlebars, can now easily inject and render dynamic content in the pages.
 
@@ -28,10 +22,14 @@ FOR MAIN NEW BRANCH:
 
 The file structure changed substantially, any code that references the old file structure needs to be looked at.
 
--Login and Logout buttons now update on the user being logged in or not
+-Login and Logout buttons now update on the user being logged in or not 
+-This displays the user's name and carries over between pages.
 
 -Session should be working, and is currently sending back :
 userName: req.session.username
 userID: req.session.ID
 
 The session ID should be based on the row for the user in the DB (so the userID)
+
+
+Still have cleared out many "dead" files, just in case someone wants/needs to use
