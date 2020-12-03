@@ -131,6 +131,20 @@ app.get('/register-success.html', function (req, res) {
   })
 });
 
+app.get('/approve-profile.html', function (req, res) {
+  res.render('approve-profile', {
+    userName: req.session.username,
+    userID: req.session.ID
+  })
+});
+
+app.get('/decline-profile.html', function (req, res) {
+  res.render('decline-profile', {
+    userName: req.session.username,
+    userID: req.session.ID
+  })
+});
+
 // confirm-profile Page
 app.get('/confirm-profile', function (req, res) {
   let email = req.query.email;
