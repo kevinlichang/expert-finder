@@ -22,10 +22,9 @@ FOR MAIN NEW BRANCH:
 
 The file structure changed substantially, any code that references the old file structure needs to be looked at.
 
--Login and Logout buttons now update on the user being logged in or not 
--This displays the user's name and carries over between pages.
+-Login and Logout buttons now update on the user being logged in or not, this displays the user's name and carries over between pages.
 
--Session should be working, and is currently sending back :
+-Sessions should be working, and is currently sending back :
 userName: req.session.username
 userID: req.session.ID
 
