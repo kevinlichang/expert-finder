@@ -12,7 +12,7 @@ FOR MAIN NEW BRANCH:
 
 -Using handlebars, can now easily inject and render dynamic content in the pages.
 
--Tested by hosting locally with Node, and the pages are all being hosted and working correctly.
+-Tested by hosting locally with Node, and the pages are all being hosted and loading correctly.
 
 -Merged the CSS into one CSS file.
 
