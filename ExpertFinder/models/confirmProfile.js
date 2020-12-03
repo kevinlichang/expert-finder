@@ -9,22 +9,15 @@ confirmPageRouter = express.Router();
 
 confirmPageRouter.get('/confirm-profile', function(req, res) {
   let email = req.query.email;
+
   
   let sql = 'select * from user_info where email = ?'
-
-
   
-  db.get(sql, email, (err, data) => {
+  db.get(sql, email, (err, rows) => {
     if (err) {
       res.status(500).json({ "error": err.message });
     } else {
-      var context = {
-        results: data
-      };
-      console.log(context.results)
-
-
-      res.render('confirm-profile', context);
+      console.log(rows)
     }
   })
 
@@ -45,4 +38,4 @@ confirmPageRouter.get('/confirm-profile', function(req, res) {
 
 });
 
-module.exports = confirmPageRouter 
+module.exports = confirmPageRouter
