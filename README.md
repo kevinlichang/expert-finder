@@ -31,4 +31,4 @@ userID: req.session.ID
 The session ID should be based on the row for the user in the DB (so the userID)
 
 
-Still have cleared out many "dead" files, just in case someone wants/needs to use
+Still haven't cleared out many "dead" files, just in case someone wants/needs to use
