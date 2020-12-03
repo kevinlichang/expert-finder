@@ -1,12 +1,13 @@
 //data inheritted from the index page
 var data = localStorage['searchRequest'];
 if(data){
-var inputString = JSON.parse(data).content;
-var inputType = JSON.parse(data).type;
+	var inputString = JSON.parse(data).content;
+	var inputType = JSON.parse(data).type;
 }
 var expertList = [];
 var profileIndex = 0;
 var postLink = 'localhost:4001/queries/searchprofiles?searchName=';
+var getLink = 'localhost:4001/queries/profile?accountid='
 
 
 
@@ -28,42 +29,6 @@ class Expert{
 	}
 }
 
-
-//sent get request based on the search type 
-function sendData(){
-	var req = new XMLHttpRequest();
-	let payload = JSON.stringigy(reformatInput(inputString));
-	//if search by Name
-	if(inputType == 1){
-		req.open("POST", "Link to search by name"+payload+"&appid="+apiKey, true);
-	//if search by classes, skills and org
-	}else{
-		req.open("POST", "Link to search by CSO"+payload+"&appid="+apiKey, true);
-	}
-	req.send(null);
-	req.addEventListener('load',function(){
-      if(req.status >= 200 && req.status < 400){
-        var response = JSON.parse(req.responseText);
-        for(let i = 0; i < response.length; i++){
-        	let temp = new expert();
-        	temp.userid = response[i].userid;
-        	temp.fname = response[i].fname;
-        	temp.lname = response[i].lname;
-        	temp.email = response[i].email;
-        	temp.phone = response[i].phone;
-        	temp.classes = response[i].classes;
-        	temp.skills = response[i].skills;
-        	temp.org = response[i].org;
-        	temp.linkedin = response[i].linkedin;
-        	temp.twitter = response[i].twitter;
-        	temp.github = response[i].github;
-        	temp.project = response[i].project;
-        	expertList.push(temp);	
-        }
-      }else{
-        console.log("Error in network request: " + req.statusText);
-      }});
-}
 
 
 function reformatInput(inputStr){
@@ -113,7 +78,32 @@ function formReposLink(gitStr){
 	}	
 }
 
-function getData(){
+//sent get request based on the search type 
+function getData(id){
+	var req = new XMLHttpRequest();
+	getLink += id;
+	req.open("GET", getLink, false);
+	req.send(null);
+	
+	var response = JSON.parse(req.responseText);
+	let temp = new Expert();
+	temp.userid = response.accountid;
+	temp.fname = response.fname;
+	temp.lname = response.lname;
+	temp.email = response.email;
+	temp.phone = response.phone;
+	temp.classes = formatStr(response.classes);
+	temp.skills = formatStr(response.skills);
+	temp.org = formatStr(response.org);
+	temp.linkedin = response.linkedin;
+	temp.twitter = response.twitter;
+	temp.github = response.github;
+	temp.project = formReposLink(response.github);
+	return temp;
+
+}
+
+function postID(){
 	var dataBack = [];
 	var req = new XMLHttpRequest();
 	var payload= reformatInput(inputString);
@@ -127,37 +117,29 @@ function getData(){
 	postLink += payload.searchName;
 	req.open('POST', postLink, true);
 	req.setRequestHeader('Content-Type', 'application/json');
-	req.send(payload);
-	req.addEventListener('load',function(){
+
+ 	req.addEventListener('load',function(){
       if(req.status >= 200 && req.status < 400){
-        var response = JSON.parse(req.responseText);
-        for(let i = 0; i < response.length; i++){
-        	let temp = new expert();
-        	temp.userid = response[i].userid;
-        	temp.fname = response[i].fname;
-        	temp.lname = response[i].lname;
-        	temp.email = response[i].email;
-        	temp.phone = response[i].phone;
-        	temp.classes = formatStr(response[i].classes);
-        	temp.skills = formatStr(response[i].skills);
-        	temp.org = formatStr(response[i].org);
-        	temp.linkedin = response[i].linkedin;
-        	temp.twitter = response[i].twitter;
-        	temp.github = response[i].github;
-        	temp.project = formReposLink(response[i].github);
-        	dataBack.push(temp);	
-        }
-      } else {
-        console.log("Error in network request: " + req.statusText);
+	    var response = JSON.parse(req.responseText);
+	    for(let i = 0; i < response.length; i++){
+	    	let temp = getData(response[i].userid);
+	    	dataBack.push(temp);	
+	    }
+	}else {
+        //console.log("Error in network request: " + req.statusText);
       }});
     req.send(JSON.stringify(payload));
-   	return dataBack;
+    
+   	//return dataBack;
 }
 
 
 //implement temporary testing array is used before database implementation finishes. 
 var exampleExperts = [
   {
+      username: "clarjohn@oregonstate.edu",
+      userpassword: "password",
+      accountactive: true,
       userid: 1,
       fname: "John",
       lname: "clarke",
@@ -169,11 +151,14 @@ var exampleExperts = [
       classes:[{tag_name: "CS 161", tag_description:"Intro Computer Science" ,tag_show:true},
                 {tag_name: "CS 162", tag_description:"Intro Computer Science 2" ,tag_show:true},
                 {tag_name: "CS 290", tag_description:"Intro web development" ,tag_show:true}],
-      skills:[{tag_name: "Python", tag_description:"" ,tag_show:true},
+      skills:[{tag_name: "python", tag_description:"" ,tag_show:true},
               {tag_name: "SQL", tag_description:"" ,tag_show:true}],
       org:[{tag_name: "Climate Corp", tag_description:"Product Manager" ,tag_show:true}],
   },
   {
+    username: "DoeJane@oregonstate.edu",
+    userpassword: "123",
+    accountactive: false,
     userid: 2,
     fname: "Jane",
     lname: "Doe",
@@ -185,12 +170,31 @@ var exampleExperts = [
     classes:[{tag_name: "CS 161", tag_description:"Intro Computer Science" ,tag_show:true},
             {tag_name: "CS 162", tag_description:"Intro Computer Science 2" ,tag_show:true},
             {tag_name: "CS 290", tag_description:"Intro web development" ,tag_show:true}],
-    skills:[{tag_name: "Python", tag_description:"" ,tag_show:true},
+    skills:[{tag_name: "javascript", tag_description:"" ,tag_show:true},
             {tag_name: "SQL", tag_description:"" ,tag_show:true}],
-    org:[{tag_name: "Climate Corp", tag_description:"Product Manager" ,tag_show:true}],
+    org:[{tag_name: "google", tag_description:"data engineer" ,tag_show:true}],
   },
   {
-      userid: 3,
+    username: "DoeJake@oregonstate.edu",
+    userpassword: "abc",
+    accountactive: false,
+    userid: 3,
+    fname: "Jake",
+    lname: "Doe",
+    phone: "999999999",
+    email: "DoeJake@oregonstate.edu",
+    linkedin: "",
+    github: "",
+    twitter: "",
+    classes:[{tag_name: "CS 161", tag_description:"Intro Computer Science" ,tag_show:true},
+            {tag_name: "CS 162", tag_description:"Intro Computer Science 2" ,tag_show:true},
+            {tag_name: "CS 290", tag_description:"Intro web development" ,tag_show:true}],
+    skills:[{tag_name: "python", tag_description:"" ,tag_show:true},
+            {tag_name: "SQL", tag_description:"" ,tag_show:true}],
+    org:[{tag_name: "amazon", tag_description:"engineer" ,tag_show:true}],
+  },
+  {
+      userid: 4,
       fname: "Emily",
       lname: "Earnhardt",
       phone: "5413602345",
@@ -206,7 +210,7 @@ var exampleExperts = [
       org:[{tag_name: "Climate Corp", tag_description:"Product Manager" ,tag_show:true}],
   },
   {
-    userid: 4,
+    userid: 5,
     fname: "Mark",
     lname: "Smith",
     phone: "5413602345",
@@ -222,16 +226,68 @@ var exampleExperts = [
     org:[{tag_name: "Climate Corp", tag_description:"Product Manager" ,tag_show:true}],
   },
 ];
-expertList = exampleExperts;
+/*expertList = exampleExperts;
 for(let h = 0; h < exampleExperts.length; h ++){
 	expertList[h].classes = formatStr(exampleExperts[h].classes)
 	expertList[h].skills = formatStr(exampleExperts[h].skills)
 	expertList[h].org = formatStr(exampleExperts[h].org)
 	expertList[h].project = formReposLink(exampleExperts[h].github)
-}
+}*/
 
 
 //used to send current selected data to the menter-profile page
+
+
+function getExperts(){
+	var req = reformatInput(inputString).values;
+	//var testData = localStorage['experts'];
+	//var testExperts = JSON.parse(testData).content;
+	let testAll = [];
+	//let test ={};
+	for(let j = 0; j < exampleExperts.length; j++){
+		//test.id = j;
+		testAll[j] = 0;
+		for(let i = 0; i < req.length; i++){
+			if(inputType == 1){
+					if(req[i] == exampleExperts[j].fname || req[i] == exampleExperts[j].lname){
+						testAll[j] ++;
+						//test.count ++;
+					}
+			}else if(inputType == 0){
+				for(let u = 0; u < exampleExperts[j].classes.length; u ++){
+					if(req[i] == exampleExperts[j].classes[u].tag_name){
+						testAll[j] ++;
+					}
+				}
+				for(let p = 0; p < exampleExperts[j].skills.length; p ++){
+					if(req[i] == exampleExperts[j].skills[p].tag_name){
+						testAll[j] ++;
+					}
+				}
+				for(let q = 0; q < exampleExperts[j].org.length; q ++){
+					if(req[i] == exampleExperts[j].org[q].tag_name){
+						testAll[j] ++;
+					}
+				}
+
+			}
+			//testAll.push(test);
+		}	
+
+	}
+
+	for(let k = 0; k < testAll.length; k++){
+		//let j = testAll[k];
+		if(testAll[k] == req.length){
+			let temp = exampleExperts[k];
+			temp.classes = formatStr(exampleExperts[k].classes);
+			temp.skills = formatStr(exampleExperts[k].skills);
+			temp.org = formatStr(exampleExperts[k].org);
+			temp.project = formReposLink(exampleExperts[k].github);
+			expertList.push(temp);
+		}
+	}
+}
 
 function gitProject(reposLink){
 	var show = document.getElementById("projectDisplay");
@@ -330,13 +386,29 @@ function listNames(result){
 
 //to send data to mentor-profile page when user click update button in this page
 function storeUpdate(){
-	var update = expertList[profileIndex];
-	localStorage.setItem("updateData", JSON.stringify(update));
+	var updateID = expertList[profileIndex].userid;
+	localStorage.setItem("updateData", JSON.stringify(updateID));
 }
 
 
-//sendData();
-//expertList = getData();
-listNames(expertList);
-showProfile(expertList,0);
+//getData();
+//expertList = postID();
+getExperts();
+if(expertList.length != 0){
+	listNames(expertList);
+	showProfile(expertList,0);
+}else{
+	warn = "No result";
+	document.getElementById('searchResult').innerHTML = warn;
+	if(inputString){
+		let temp ="";
+		if(inputType == 1){
+			temp += " by Name";
+		}else if(inputType == 0){
+			temp += " by CSO";
+		}
+		document.getElementById('searchInputString').innerHTML = inputString;
+		document.getElementById("searchInputType").innerHTML = temp;
+	}
+}
 

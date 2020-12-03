@@ -2,6 +2,12 @@
 
 var id = 0;
 
+var updateID = localStorage['updateData'];
+if(updateID){
+    localStorage.removeItem('updateData');
+    id = JSON.parse(updateID);
+}
+
 var actions = 
 '<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>' +
 '<a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>' +
