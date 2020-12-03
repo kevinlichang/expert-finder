@@ -102,10 +102,15 @@ $(document).ready(function(){
 
     $("#register-submit").click(function(){   
         
-        let email = $("#email").val()
-        let fname = $("#firstname").val()
-        let lname = $("#lastname").val()
-        let pwd = $("#psw").val()
+        let email = $("#email").val();
+        let fname = $("#firstname").val();
+        let lname = $("#lastname").val();
+        let pwd = $("#psw").val();
+        let gh = $("#git").val();
+        let linkedIn = $("#course").val();
+        let twitter = $("#twitter").val();
+
+
         //data to be sent to database
         // $.post(url + "/queries/account", 
         //     {
@@ -130,8 +135,9 @@ $(document).ready(function(){
             subject:subject,
             text:text
         },
-            null
+            window.location=url+"/register-success.html"
         );
+
 
     });
 

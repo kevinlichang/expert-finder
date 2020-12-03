@@ -124,6 +124,13 @@ app.get('/result-list.html', function (req, res) {
   })
 });
 
+app.get('/register-success.html', function (req, res) {
+  res.render('register-success', {
+    userName: req.session.username,
+    userID: req.session.ID
+  })
+});
+
 // confirm-profile Page
 app.get('/confirm-profile', function (req, res) {
   let email = req.query.email;
