@@ -125,12 +125,32 @@ app.get('/result-list.html', function (req, res) {
 });
 
 // confirm-profile Page
-app.get('/confirm-profile.html', function (req, res) {
-  res.render('confirm-profile', {
-    javascript: '<script src="js/HomeSearch.js"></script>',
-    userName: req.session.username,
-    userID: req.session.ID
+app.get('/confirm-profile', function (req, res) {
+  let email = req.query.email;
+  let sql = 'select * from user_info where email = ?'
+
+  db.get(sql, email, (err, data) => {
+    if (err) {
+      res.status(500).json({ "error": err.message });
+    } else {
+      var context = {
+        results: data,
+        javascript: '<script src="js/confirmationScript.js"></script>',
+        userName: req.session.username,
+        userID: req.session.ID
+      };
+      console.log(context.results)
+
+
+      res.render('confirm-profile', context)
+    }
   })
+  
+  
+  
+  
+  
+
 });
 
 
@@ -194,10 +214,6 @@ app.get('/sessionID', (req, res) => {
 const emailRouter = require('./models/emailConfirmRoute.js');
 app.use(emailRouter);
 
-
-// Confirm Profile Page after registration
-const confirmPageRouter = require('./models/confirmProfile.js');
-app.use(confirmPageRouter);
 
 
 // 404 Error Page

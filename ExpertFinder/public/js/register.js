@@ -122,7 +122,7 @@ $(document).ready(function(){
         subject = "Confirm Profile for " + fname;
 
         var fullName = fname + " " + lname;
-        var confirmProfileLink = confirmURL + "?email=" + email + "&password=" + pwd;
+        var confirmProfileLink = confirmURL + "?email=" + email;
         text = "A new profile has been registered for " + fullName + ". Please click here to confirm: " + confirmProfileLink;
 
         $.get(url + "/send-email-confirm",
