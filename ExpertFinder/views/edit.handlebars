@@ -1,102 +1,44 @@
-<Div class="container-fluid">
-    <Div class="row tableRows">
-        <!-- Table for  Classes-->
-        <div class="col">
-            <div class="table-responsive">
-                <div class="table-wrapper">
-                    <div class="table-title">
-                        <div class="row tableRows">
-                            <div class="col-sm-8">
-                                <h2>Classes</h2>
-                            </div>
-                            <div class="col-sm-4">
-                                <button type="button" class="btn btn-secondary add-new" id="add-class"><i
-                                        class="fa fa-plus"></i> Add New</button>
-                            </div>
-                        </div>
-                    </div>
-                    <table class="table table-bordered" id="tab_class">
-                        <thead>
-                            <tr>
-                                <th>Class</th>
-                                <th>Title</th>
-                                <th>Show</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
 
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <!--End of Classes Table-->
-            <br>
-            <!-- Table for skills-->
-            <div class="col">
-
-                <div class="table-responsive">
-                    <div class="table-wrapper">
-                        <div class="table-title">
-                            <div class="row tableRows">
-                                <div class="col-sm-8">
-                                    <h2>Skills</h2>
-                                </div>
-                                <div class="col-sm-4">
-                                    <button type="button" class="btn btn-secondary add-new" id="add-Skills"><i
-                                            class="fa fa-plus"></i> Add New</button>
-                                </div>
-                            </div>
-                        </div>
-                        <table class="table table-bordered" id="tab_Skills">
-                            <thead>
-                                <tr>
-                                    <th>Skills</th>
-                                    <th>Show</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <!--End of skills table-->
-                <br>
-                <!--Org Table-->
-                <div class="col">
-                    <div class="table-responsive">
-                        <div class="table-wrapper">
-                            <div class="table-title">
-                                <div class="row tableRows">
-                                    <div class="col-sm-8">
-                                        <h2>Orgs</h2>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <button type="button" class="btn btn-secondary add-new" id="add-org"><i
-                                                class="fa fa-plus"></i> Add New</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <table class="table table-bordered" id="tab_org">
-                                <thead>
-                                    <tr>
-                                        <th>Org</th>
-                                        <th>Role</th>
-                                        <th>Show</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+<h1><em>Editing clarke John's profile</em></h1>
+<div class='div1'>
+    <h2>Classes</h2>
+    <ul id="classes"></ul>
 
 
-                    <!--End of Org Table-->
-                </Div>
-            </Div>
+    <h4>Add a class</h4>
+    <p>Class: <input type="text" id="class"></p>
+    <p>Title: <input type="text" id='title'></p>
+    <button id="add-class">Add</button>
+</div>
+
+<div class='div2'>
+    <h2>Skills</h2>
+    <ul id="skills"></ul>
+
+
+    <h4>Add a skill</h4>
+    <p>Skill: <input type="text" id="skill"></p>
+    <button id="add-skill">Add</button>
+
+</div>
+
+<div class='div3'>
+    <h2>Industry/Organization</h2>
+    <ul id="orgs"></ul>
+
+
+    <h4>Add or change industry/organization</h4>
+    <p>Organization: <input type="text" id="org"></p>
+    <p>Position: <input type="text" id="pos"></p>
+    <button id="add-org">Add</button>
+
+</div>
+
+
+
+    
+<br>
+<br>
+<br>
+<br>
 
