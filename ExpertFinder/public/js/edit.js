@@ -1,132 +1,218 @@
-/// Variable to hold actions 
-
 var id = 0;
 
-var updateID = localStorage['updateData'];
-if(updateID){
-    localStorage.removeItem('updateData');
-    id = JSON.parse(updateID);
-}
+$(function() {
+    var $classes = $('#classes');
+    var $class = $('#class');
+    var $title = $('#title');
 
-var actions = 
-'<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>' +
-'<a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>' +
-'<a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>';
-
-
-//// dynamic Table Classes
-$(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip({trigger: 'hover'});
-    //var actions = $('#tab_class td:last-child').html();
-    // Append table for classes
-    $('#add-class').click(function(){
-        $(this).attr("disabled", "disabled");
-        var index = $('#tab_class tbody tr:last-child').index();
-        var row = '<tr>' +
-            '<td class ="editable"><input type="text" class="form-control" name="Class" id="ClassName"></td>' +
-            '<td class ="editable"><input type="text" class="form-control" name="Title" id="ClassTitle"></td>' +
-            '<td><input type="checkbox" class="form-control" name="ShowClass" id="ClassShow"></td>' +
-            '<td>' + actions + '</td>' +
-        '</tr>';
-        $('#tab_class').append(row);
-        $('#tab_class tbody tr').eq(index + 1).find(".add, .edit").toggle();        
-        $('[data-toggle="tooltip"]').tooltip();
-  
+    $.ajax({
+        type: 'GET',
+        headers: {"Content-Type": "application/json"},
+        url: 'http://localhost:4001/queries/usertags?accountid=2&tagtype=class',
+        success: function(classes) {
+            $.each(classes, function(i, item) {
+                $.each(item, function(i, cl) {
+                    // Add 2 spans arounnd both cl.tag_name and cl.tag_desc, ADD two new input 
+                    $classes.append('<li>Class: ' + "<span class='sclass'>" + cl.tag_name + '</span>' + 
+                    "  <input class='editc'/>'" + '<br>Title: ' + "<span class='sdesc'>" + cl.tag_description 
+                    + '</span>' + "  <input class='editd'/>'" + '<br>' + "<button class='remove'>X</button>" 
+                    + "  <button class='save'>Save</button>" + '</li');
+                }); 
+            });
+        } 
+        //,
+        //error: function() {
+        //    alert('error loading classes');
+        //}
     });
 
-    // Append table for skills
-    $('#add-Skills').click(function(){
-        $(this).attr("disabled", "disabled");
-        var index = $('#tab_Skills tbody tr:last-child').index();
-        var row = '<tr>' +
-            '<td  class ="editable"><input type="text" class="form-control" name="Skill" id="SkillName"></td>' +
-            '<td><input type="checkbox" class="form-control" name="ShowSkill" id="SkillShow"></td>' +
-            '<td>' + actions + '</td>' +
-        '</tr>';
-        $('#tab_Skills').append(row);
-        $('#tab_Skills tbody tr').eq(index + 1).find(".add, .edit").toggle();       
-        $('[data-toggle="tooltip"]').tooltip();
+    var $skills = $('#skills');
+    var $skill = $('#skill');
+
+    $.ajax({
+        type: 'GET',
+        headers: {"Content-Type": "application/json"},
+        url: 'http://localhost:4001/queries/usertags?accountid=1&tagtype=skill',
+        success: function(classes) {
+            $.each(classes, function(i, item) {
+                $.each(item, function(i, cl) {
+                    // Add 2 spans arounnd both cl.tag_name and cl.tag_desc, ADD two new input 
+                    $skills.append('<li>Skill: ' + "<span class='sclass'>" + cl.tag_name + '</span>' + 
+                    "  <input class='editc'/>'" + '<br>'+ "<button class='remove'>X</button>" 
+                    + "  <button class='save'>Save</button>" + '</li');
+                }); 
+            });
+        } 
+        //,
+        //error: function() {
+        //    alert('error loading classes');
+        //}
     });
 
-        // Append table for skills
-        $('#add-org').click(function(){
-            $(this).attr("disabled", "disabled");
-            var index = $('#tab_org tbody tr:last-child').index();
-            var row = '<tr>' +
-                '<td  class ="editable"><input type="text" class="form-control" name="Org" id="OrgName"></td>' +
-                '<td  class ="editable"><input type="text" class="form-control" name="OrgRole" id="OrgRole"></td>' +
-                '<td><input type="checkbox" class="form-control" name="ShowSkill" id="OrgShow"></td>' +
-                '<td>' + actions + '</td>' +
-            '</tr>';
-            $('#tab_org').append(row);
-            $('#tab_org tbody tr').eq(index + 1).find(".add, .edit").toggle();      
-            $('[data-toggle="tooltip"]').tooltip();
-        });
+     // Industry/org
+     var $orgs = $('#orgs');
+     var $organization = $('#org');
+     var $position = $('#pos');
+ 
+     $.ajax({
+         type: 'GET',
+         headers: {"Content-Type": "application/json"},
+         url: 'http://localhost:4001/queries/usertags?accountid=1&tagtype=org',
+         success: function(classes) {
+             $.each(classes, function(i, item) {
+                 $.each(item, function(i, cl) {
+                     // Add 2 spans arounnd both cl.tag_name and cl.tag_desc, ADD two new input 
+                     $orgs.append('<li>Organization: ' + "<span class='sclass'>" + cl.tag_name + '</span>' + 
+                     "  <input class='editc'/>'" + '<br>Position: ' + "<span class='sdesc'>" + cl.tag_description 
+                     + '</span>' + "  <input class='editd'/>'" + '<br>' + "<button class='remove'>X</button>" 
+                     + "  <button class='save'>Save</button>" + '</li');
+                 }); 
+             });
+         } 
+         //,
+         //error: function() {
+         //    alert('error loading classes');
+         //}
+     });
 
-// Add row on add button click
-    $(document).on("click", ".add", function(){
-        var empty = false;
-        var input = $(this).parents("tr").find('input[type="text"]');
-        input.each(function(){
-            if(!$(this).val()){
-                $(this).addClass("error");
-                empty = true;
-            } else{
-                $(this).removeClass("error");
+    $('#add-class').on('click', function(){
+        var name =  $class.val();
+        var desc = $title.val();
+
+        var add_class = {
+            "tag_name": $class.val(),
+            "tag_description": $title.val(),
+            "tag_show": 1,
+        };
+
+        $classes.append('<li>Class: ' + "<span class='sclass'>" + name + '</span>' + 
+        "  <input class='editc'/>'" + '<br>Title: ' + "<span class='sdesc'>" + desc 
+        + '</span>' + "  <input class='editd'/>'" + '<br>' + "<button class='remove'>X</button>" 
+        + "  <button class='save'>Save</button>" + '</li');
+
+        $.ajax({
+            type: 'POST',
+            headers: {"Content-Type": "application/json"},
+            url: 'http://localhost:4001/queries/usertags?accountid=2&tagtype=class',
+            data: JSON.stringify(add_class),
+            
+            sucess: function() {
+                $classes.append('<li>Class: ' + name +'<br>Title: ' + desc + '</li');
             }
         });
-        $(this).parents("tr").find(".error").first().focus();
-        if(!empty){
-            input.each(function(){
-                $(this).parent("td").html($(this).val());
-            });         
-            $(this).parents("tr").find(".add, .edit").toggle();
-            $('.add-new').removeAttr("disabled");
+    });
+
+    $classes.delegate('.remove', 'click', function(){
+        var $li = $(this).closest('li');
+
+        $li.remove();
+
+    });
+
+    $classes.delegate('.save', 'click', function(){
+        var $li = $(this).closest('li');
+        $li.find('span.sclass').text($li.find('input.editc').val() );
+        $li.find('input.editc').val("");
+
+        $li.find('span.sdesc').text($li.find('input.editd').val() );
+        $li.find('input.editd').val("");
+
+    });
+
+    $('#add-skill').on('click', function(){
+        var name =  $skill.val();
+
+        var add_skill = {
+            "tag_name": $skill.val(),
+            "tag_show": 1,
+        };
+
+        $skills.append('<li>Skill: ' + "<span class='sclass'>" + name + '</span>' + 
+        "  <input class='editc'/>'" + '<br>' + "<button class='remove'>X</button>" 
+        + "  <button class='save'>Save</button>" + '</li');
+
+        $.ajax({
+            type: 'POST',
+            headers: {"Content-Type": "application/json"},
+            url: 'http://localhost:4001/queries/usertags?accountid=1&tagtype=skill',
+            data: JSON.stringify(add_skill),
+            
+            sucess: function() {
+                
+            }
+        });
+    });
+
+    $skills.delegate('.remove', 'click', function(){
+        var $li = $(this).closest('li');
+
+        $li.remove();
+
+    });
+
+    $skills.delegate('.save', 'click', function(){
+        var $li = $(this).closest('li');
+        $li.find('span.sclass').text($li.find('input.editc').val() );
+        $li.find('input.editc').val("");
+
+        $li.find('span.sdesc').text($li.find('input.editd').val() );
+        $li.find('input.editd').val("");
+
+    });
+
+   
+
+    $('#add-org').on('click', function(){
+        var name =  $organization.val();
+        var desc = $position.val();
+
+        var add_org = {
+            "tag_name": $organization.val(),
+            "tag_description": $position.val(),
+            "tag_show": 1,
+        };
+
+        $orgs.append('<li>Organization: ' + "<span class='sclass'>" + name + '</span>' + 
+        "  <input class='editc'/>'" + '<br>Position: ' + "<span class='sdesc'>" + desc 
+        + '</span>' + "  <input class='editd'/>'" + '<br>' + "<button class='remove'>X</button>" 
+        + "  <button class='save'>Save</button>" + '</li');
+
+        $.ajax({
+            type: 'POST',
+            headers: {"Content-Type": "application/json"},
+            url: 'http://localhost:4001/queries/usertags?accountid=1&tagtype=org',
+            data: JSON.stringify(add_org),
+            
+            sucess: function() {
+
+            }
+        });
+    });
+
+    $orgs.delegate('.remove', 'click', function(){
+        var $li = $(this).closest('li');
+
+        $li.remove();
+
+    });
+
+    $orgs.delegate('.save', 'click', function(){
+        var $li = $(this).closest('li');
+
+        if ($li.find('input.editc').val().length != 0 && $li.find('input.editd').val().length != 0) {
+            $li.find('span.sdesc').text($li.find('input.editd').val() );
+            $li.find('input.editd').val("");
+            $li.find('span.sclass').text($li.find('input.editc').val() );
+            $li.find('input.editc').val(""); 
         }
-
-        // POST request when clicking on add
-        var type = "";
-
-        $.ajax({
-            url: "localhost:4001/queries/usertags?accountid=" + id + "&tagtype=" + type + "",
-            method: "POST",
-            data: {"tag_name": "","tag_description": "" ,"tag_show": ""}
-         });   
-
+        else if($li.find('input.editc').val().length === 0) {
+            $li.find('span.sdesc').text($li.find('input.editd').val() );
+            $li.find('input.editd').val("");
+        } else {
+            $li.find('span.sclass').text($li.find('input.editc').val() );
+            $li.find('input.editc').val(""); 
+        }
+     
     });
 
-// Edit row on edit button click
-    $(document).on("click", ".edit", function(){        
-        $(this).parents("tr").find(".editable").each(function(){
-            $(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
-        });     
-        $(this).parents("tr").find(".add, .edit").toggle();
-        $(".add-new").attr("disabled", "disabled");
-
-        // POST request when clicking on edit button
-        var type = "";
-
-        $.ajax({
-            url: "localhost:4001/queries/usertags?accountid=" + id + "&tagtype=" + type + "",
-            method: "POST",
-            data: {"tag_name": "","tag_description": "" ,"tag_show": ""}
-         });   
-    });
-
-// Delete row on delete button click
-    $(document).on("click", ".delete", function(){
-        $(this).tooltip('hide');
-        $(this).parents("tr").remove();
-        $(".add-new").removeAttr("disabled");
-
-        // DELETE request when clicking on delete button
-        var type = "";
-
-        $.ajax({
-            url: "localhost:4001/queries/usertags?accountid=" + id + "&tagtype=" + type + "",
-            method: "DELETE",
-            data: {"tag_name": "","tag_description": "" ,"tag_show": ""}
-         });   
-    });
-
-}); 
+});
